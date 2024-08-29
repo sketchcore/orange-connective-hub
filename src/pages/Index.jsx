@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { BarChart3, Lock, Key, FileText, Star, Search } from "lucide-react";
 
 const AIToolCard = ({ name, description, cost, dataRequirements, previewImage, vendorLogo, rating, reviews }) => (
-  <Card className="mb-4">
+  <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:scale-105">
     <CardHeader>
       <div className="flex items-center justify-between">
         <CardTitle className="text-lg">{name}</CardTitle>
@@ -16,19 +16,19 @@ const AIToolCard = ({ name, description, cost, dataRequirements, previewImage, v
       <CardDescription>{description}</CardDescription>
     </CardHeader>
     <CardContent>
-      <img src={previewImage} alt={name} className="w-full h-40 object-cover mb-4 rounded" />
+      <img src={previewImage} alt={name} className="w-full h-40 object-cover mb-4 rounded transition-opacity duration-300 hover:opacity-80" />
       <p><strong>Cost:</strong> {cost}</p>
       <p><strong>Data Needs:</strong> {dataRequirements}</p>
       <div className="flex items-center mt-2">
         <Star className="text-yellow-400 mr-1" />
         <span>{rating} ({reviews} reviews)</span>
       </div>
-      <Button className="mt-4 w-full bg-orange-500 hover:bg-orange-600">Install Now</Button>
+      <Button className="mt-4 w-full bg-orange-500 hover:bg-orange-600 transition-colors duration-300">Install Now</Button>
     </CardContent>
   </Card>
 );
 
-const AIMarketplace = () => {
+const ConnectiveMarketplace = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterCategory, setFilterCategory] = useState('all');
 
@@ -38,7 +38,7 @@ const AIMarketplace = () => {
       description: "Advanced analytics tool powered by AI",
       cost: "$500/month + $0.01 per analysis",
       dataRequirements: "Company financial data",
-      previewImage: "https://picsum.photos/seed/smartanalytics/300/200",
+      previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       vendorLogo: "https://logo.clearbit.com/tableau.com",
       rating: 4.5,
       reviews: 120,
@@ -49,7 +49,7 @@ const AIMarketplace = () => {
       description: "24/7 AI-powered customer support",
       cost: "$1000/month for up to 10,000 interactions",
       dataRequirements: "CRM system integration",
-      previewImage: "https://picsum.photos/seed/aicustomerservice/300/200",
+      previewImage: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80",
       vendorLogo: "https://logo.clearbit.com/zendesk.com",
       rating: 4.2,
       reviews: 85,
@@ -60,88 +60,77 @@ const AIMarketplace = () => {
       description: "AI tool for predicting equipment failures",
       cost: "$2000/month + $100 per connected device",
       dataRequirements: "IoT sensor data",
-      previewImage: "https://picsum.photos/seed/predictivemaintenance/300/200",
+      previewImage: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       vendorLogo: "https://logo.clearbit.com/ge.com",
       rating: 4.7,
       reviews: 200,
       category: "Maintenance"
     },
     {
-      name: "AI Chatbot",
-      description: "Intelligent chatbot for website integration",
-      cost: "$750/month for unlimited chats",
-      dataRequirements: "Website integration",
-      previewImage: "https://picsum.photos/seed/aichatbot/300/200",
-      vendorLogo: "https://logo.clearbit.com/intercom.com",
-      rating: 4.3,
-      reviews: 150,
-      category: "Customer Support"
+      name: "Claude 3.5",
+      description: "Advanced AI language model for various tasks",
+      cost: "$0.03 per 1K tokens",
+      dataRequirements: "Text input",
+      previewImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      vendorLogo: "https://logo.clearbit.com/anthropic.com",
+      rating: 4.8,
+      reviews: 300,
+      category: "AI Language Model"
     },
     {
-      name: "Data Visualization",
-      description: "AI-powered data visualization tool",
-      cost: "$600/month + $0.05 per visualization",
-      dataRequirements: "Data warehouse connection",
-      previewImage: "https://picsum.photos/seed/datavisualization/300/200",
-      vendorLogo: "https://logo.clearbit.com/looker.com",
+      name: "Cursor",
+      description: "AI-powered code editor and assistant",
+      cost: "$20/month per user",
+      dataRequirements: "Code repositories",
+      previewImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      vendorLogo: "https://logo.clearbit.com/cursor.sh",
       rating: 4.6,
       reviews: 180,
-      category: "Analytics"
+      category: "Development Tools"
     },
     {
-      name: "Sentiment Analysis",
-      description: "AI tool for analyzing customer sentiment",
-      cost: "$800/month for up to 100,000 analyses",
-      dataRequirements: "Customer feedback data",
-      previewImage: "https://picsum.photos/seed/sentimentanalysis/300/200",
-      vendorLogo: "https://logo.clearbit.com/brandwatch.com",
-      rating: 4.4,
-      reviews: 110,
-      category: "Analytics"
+      name: "Staple.ai",
+      description: "AI-driven document processing and analysis",
+      cost: "$500/month for 1000 pages",
+      dataRequirements: "Document uploads",
+      previewImage: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      vendorLogo: "https://logo.clearbit.com/staple.ai",
+      rating: 4.3,
+      reviews: 95,
+      category: "Document Processing"
     },
     {
-      name: "AI-Powered CRM",
-      description: "CRM system with AI-driven insights",
-      cost: "$1500/month for up to 50 users",
-      dataRequirements: "Customer data import",
-      previewImage: "https://picsum.photos/seed/aipoweredcrm/300/200",
-      vendorLogo: "https://logo.clearbit.com/salesforce.com",
-      rating: 4.8,
-      reviews: 250,
-      category: "Customer Support"
+      name: "Scale.ai",
+      description: "AI-powered data labeling and annotation",
+      cost: "Custom pricing based on project",
+      dataRequirements: "Raw data for labeling",
+      previewImage: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      vendorLogo: "https://logo.clearbit.com/scale.com",
+      rating: 4.7,
+      reviews: 220,
+      category: "Data Labeling"
     },
     {
-      name: "Predictive Sales",
-      description: "AI tool for sales forecasting",
-      cost: "$1200/month + 1% of forecasted sales",
-      dataRequirements: "Sales history data",
-      previewImage: "https://picsum.photos/seed/predictivesales/300/200",
-      vendorLogo: "https://logo.clearbit.com/salesforce.com",
-      rating: 4.5,
-      reviews: 140,
-      category: "Sales"
+      name: "ChatGPT",
+      description: "Conversational AI for various applications",
+      cost: "$20/month for ChatGPT Plus",
+      dataRequirements: "Text input",
+      previewImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      vendorLogo: "https://logo.clearbit.com/openai.com",
+      rating: 4.9,
+      reviews: 500,
+      category: "AI Language Model"
     },
     {
       name: "AI Content Generator",
       description: "Generate marketing content with AI",
       cost: "$500/month for unlimited content generation",
       dataRequirements: "Brand guidelines and target audience info",
-      previewImage: "https://picsum.photos/seed/aicontentgenerator/300/200",
+      previewImage: "https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
       vendorLogo: "https://logo.clearbit.com/copy.ai",
       rating: 4.1,
       reviews: 95,
       category: "Marketing"
-    },
-    {
-      name: "AI-Driven Inventory Management",
-      description: "Optimize inventory with AI predictions",
-      cost: "$1800/month + $50 per warehouse",
-      dataRequirements: "Inventory and sales data",
-      previewImage: "https://picsum.photos/seed/aiinventory/300/200",
-      vendorLogo: "https://logo.clearbit.com/sap.com",
-      rating: 4.6,
-      reviews: 170,
-      category: "Operations"
     }
   ];
 
@@ -154,7 +143,7 @@ const AIMarketplace = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">AI Tool Marketplace</h2>
+      <h2 className="text-2xl font-bold mb-4">CONNECTIVE Marketplace</h2>
       <div className="flex mb-4 gap-4">
         <div className="relative flex-grow">
           <Search className="absolute left-2 top-3 h-4 w-4 text-gray-400" />
@@ -233,7 +222,7 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-orange-50">
       <header className="bg-orange-500 text-white p-4">
-        <h1 className="text-2xl font-bold">Connective Dashboard</h1>
+        <h1 className="text-2xl font-bold">CONNECTIVE Hub</h1>
       </header>
       <main className="container mx-auto mt-8 p-4">
         <Tabs defaultValue="marketplace">
@@ -243,7 +232,7 @@ const Index = () => {
             <TabsTrigger value="api"><FileText className="mr-2" />API Docs</TabsTrigger>
           </TabsList>
           <TabsContent value="marketplace">
-            <AIMarketplace />
+            <ConnectiveMarketplace />
           </TabsContent>
           <TabsContent value="settings">
             <EnterpriseSettings />
