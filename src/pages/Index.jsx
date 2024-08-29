@@ -8,7 +8,7 @@ import { BarChart3, Lock, Key, FileText, Star, Search, LayoutDashboard } from "l
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const AIToolCard = ({ name, description, cost, dataRequirements, previewImage, vendorLogo, rating, reviews }) => (
-  <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:scale-105">
+  <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-orange-50">
     <CardHeader>
       <div className="flex items-center justify-between">
         <CardTitle className="text-lg">{name}</CardTitle>
@@ -17,14 +17,14 @@ const AIToolCard = ({ name, description, cost, dataRequirements, previewImage, v
       <CardDescription>{description}</CardDescription>
     </CardHeader>
     <CardContent>
-      <img src={previewImage} alt={name} className="w-full h-40 object-cover mb-4 rounded transition-opacity duration-300 hover:opacity-80" />
+      <img src={previewImage} alt={name} className="w-full h-40 object-cover mb-4 rounded transition-all duration-300 hover:opacity-80 hover:shadow-md" />
       <p><strong>Cost:</strong> {cost}</p>
       <p><strong>Data Needs:</strong> {dataRequirements}</p>
       <div className="flex items-center mt-2">
         <Star className="text-yellow-400 mr-1" />
         <span>{rating} ({reviews} reviews)</span>
       </div>
-      <Button className="mt-4 w-full bg-orange-500 hover:bg-orange-600 transition-colors duration-300">Install Now</Button>
+      <Button className="mt-4 w-full bg-orange-500 hover:bg-orange-600 transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">Install Now</Button>
     </CardContent>
   </Card>
 );
@@ -35,47 +35,47 @@ const ConnectiveMarketplace = () => {
 
   const tools = [
     {
-      name: "Smart Analytics",
-      description: "Advanced analytics tool powered by AI",
-      cost: "$500/month + $0.01 per analysis",
-      dataRequirements: "Company financial data",
-      previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      name: "Tableau",
+      description: "Advanced analytics and data visualization platform",
+      cost: "$70/user/month (billed annually)",
+      dataRequirements: "Various data sources (databases, spreadsheets, cloud services)",
+      previewImage: "https://www.tableau.com/sites/default/files/2022-04/ProductScreenshot_Desktop_Superstore.png",
       vendorLogo: "https://logo.clearbit.com/tableau.com",
       rating: 4.5,
-      reviews: 120,
+      reviews: 1200,
       category: "Analytics"
     },
     {
-      name: "AI Customer Service",
-      description: "24/7 AI-powered customer support",
-      cost: "$1000/month for up to 10,000 interactions",
-      dataRequirements: "CRM system integration",
-      previewImage: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80",
-      vendorLogo: "https://logo.clearbit.com/zendesk.com",
-      rating: 4.2,
-      reviews: 85,
+      name: "Intercom",
+      description: "Customer messaging platform with AI-powered features",
+      cost: "Starting at $74/month (billed annually)",
+      dataRequirements: "CRM system integration, customer data",
+      previewImage: "https://downloads.intercomcdn.com/i/o/355439/92cf57d96d71d8c72059ac4c/Inbox.png",
+      vendorLogo: "https://logo.clearbit.com/intercom.com",
+      rating: 4.4,
+      reviews: 850,
       category: "Customer Support"
     },
     {
-      name: "Predictive Maintenance",
-      description: "AI tool for predicting equipment failures",
-      cost: "$2000/month + $100 per connected device",
-      dataRequirements: "IoT sensor data",
-      previewImage: "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      vendorLogo: "https://logo.clearbit.com/ge.com",
-      rating: 4.7,
-      reviews: 200,
+      name: "IBM Maximo",
+      description: "AI-powered asset management and predictive maintenance",
+      cost: "Custom pricing based on deployment",
+      dataRequirements: "IoT sensor data, equipment information",
+      previewImage: "https://www.ibm.com/content/dam/adobe-cms/instana/media_perfect/product/observability-platform/instana-observability-platform-dashboard-view.component.xl.ts=1689702099719.png/content/adobe-cms/us/en/products/instana/product-page/_jcr_content/root/table_of_contents/body/content_section_styled/content-section-body/image",
+      vendorLogo: "https://logo.clearbit.com/ibm.com",
+      rating: 4.3,
+      reviews: 320,
       category: "Maintenance"
     },
     {
-      name: "Claude 3.5",
+      name: "Claude 3",
       description: "Advanced AI language model for various tasks",
-      cost: "$0.03 per 1K tokens",
+      cost: "Starting at $20/month for Claude Pro",
       dataRequirements: "Text input",
-      previewImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      previewImage: "https://www.anthropic.com/images/claude-3/claude_hero.png",
       vendorLogo: "https://logo.clearbit.com/anthropic.com",
       rating: 4.8,
-      reviews: 300,
+      reviews: 500,
       category: "AI Language Model"
     },
     {
@@ -83,29 +83,29 @@ const ConnectiveMarketplace = () => {
       description: "AI-powered code editor and assistant",
       cost: "$20/month per user",
       dataRequirements: "Code repositories",
-      previewImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      previewImage: "https://cursor.sh/cursor-hero.png",
       vendorLogo: "https://logo.clearbit.com/cursor.sh",
       rating: 4.6,
-      reviews: 180,
+      reviews: 280,
       category: "Development Tools"
     },
     {
-      name: "Staple.ai",
-      description: "AI-driven document processing and analysis",
-      cost: "$500/month for 1000 pages",
-      dataRequirements: "Document uploads",
-      previewImage: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      vendorLogo: "https://logo.clearbit.com/staple.ai",
-      rating: 4.3,
-      reviews: 95,
+      name: "Rossum",
+      description: "AI-powered document processing and data extraction",
+      cost: "Custom pricing based on volume",
+      dataRequirements: "Document uploads (invoices, receipts, etc.)",
+      previewImage: "https://rossum.ai/wp-content/uploads/2022/10/rossum-validation-screen-hero.png",
+      vendorLogo: "https://logo.clearbit.com/rossum.ai",
+      rating: 4.5,
+      reviews: 150,
       category: "Document Processing"
     },
     {
-      name: "Scale.ai",
+      name: "Scale AI",
       description: "AI-powered data labeling and annotation",
       cost: "Custom pricing based on project",
       dataRequirements: "Raw data for labeling",
-      previewImage: "https://images.unsplash.com/photo-1518186285589-2f7649de83e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
+      previewImage: "https://scale.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero-generative-ai.00f5a1ce.png&w=3840&q=75",
       vendorLogo: "https://logo.clearbit.com/scale.com",
       rating: 4.7,
       reviews: 220,
@@ -116,22 +116,33 @@ const ConnectiveMarketplace = () => {
       description: "Conversational AI for various applications",
       cost: "$20/month for ChatGPT Plus",
       dataRequirements: "Text input",
-      previewImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      previewImage: "https://openai.com/content/images/2022/11/ChatGPT.jpg",
       vendorLogo: "https://logo.clearbit.com/openai.com",
       rating: 4.9,
-      reviews: 500,
+      reviews: 2000,
       category: "AI Language Model"
     },
     {
-      name: "AI Content Generator",
-      description: "Generate marketing content with AI",
-      cost: "$500/month for unlimited content generation",
+      name: "Jasper",
+      description: "AI content generation for marketing and copywriting",
+      cost: "Starting at $49/month",
       dataRequirements: "Brand guidelines and target audience info",
-      previewImage: "https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
-      vendorLogo: "https://logo.clearbit.com/copy.ai",
-      rating: 4.1,
-      reviews: 95,
+      previewImage: "https://assets-global.website-files.com/60e5f2de011b86acebc30db7/650c5c6f1d91a330aac1bef6_jasper-hero.webp",
+      vendorLogo: "https://logo.clearbit.com/jasper.ai",
+      rating: 4.5,
+      reviews: 950,
       category: "Marketing"
+    },
+    {
+      name: "Dataiku",
+      description: "End-to-end AI and machine learning platform",
+      cost: "Custom pricing based on deployment",
+      dataRequirements: "Various data sources, ML models",
+      previewImage: "https://cdn.dataiku.com/assets/images/product/features/visual-ml/visual-ml-2.webp",
+      vendorLogo: "https://logo.clearbit.com/dataiku.com",
+      rating: 4.6,
+      reviews: 380,
+      category: "Machine Learning"
     }
   ];
 
@@ -230,11 +241,16 @@ const Dashboard = () => {
   ];
 
   const toolUsage = [
-    { name: 'Smart Analytics', users: 50 },
-    { name: 'AI Customer Service', users: 30 },
-    { name: 'Predictive Maintenance', users: 20 },
-    { name: 'Claude 3.5', users: 40 },
+    { name: 'Tableau', users: 50 },
+    { name: 'Intercom', users: 30 },
+    { name: 'IBM Maximo', users: 20 },
+    { name: 'Claude 3', users: 40 },
     { name: 'Cursor', users: 25 },
+    { name: 'Rossum', users: 15 },
+    { name: 'Scale AI', users: 10 },
+    { name: 'ChatGPT', users: 60 },
+    { name: 'Jasper', users: 35 },
+    { name: 'Dataiku', users: 18 },
   ];
 
   const dataSources = [
