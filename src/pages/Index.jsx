@@ -39,7 +39,7 @@ const ConnectiveMarketplace = () => {
       description: "Advanced analytics and data visualization platform",
       cost: "$70/user/month (billed annually)",
       dataRequirements: "Various data sources (databases, spreadsheets, cloud services)",
-      previewImage: "https://www.tableau.com/sites/default/files/2022-04/ProductScreenshot_Desktop_Superstore.png",
+      previewImage: "https://placehold.co/600x400?text=Tableau",
       vendorLogo: "https://logo.clearbit.com/tableau.com",
       rating: 4.5,
       reviews: 1200,
@@ -50,7 +50,7 @@ const ConnectiveMarketplace = () => {
       description: "Customer messaging platform with AI-powered features",
       cost: "Starting at $74/month (billed annually)",
       dataRequirements: "CRM system integration, customer data",
-      previewImage: "https://downloads.intercomcdn.com/i/o/355439/92cf57d96d71d8c72059ac4c/Inbox.png",
+      previewImage: "https://placehold.co/600x400?text=Intercom",
       vendorLogo: "https://logo.clearbit.com/intercom.com",
       rating: 4.4,
       reviews: 850,
@@ -61,7 +61,7 @@ const ConnectiveMarketplace = () => {
       description: "AI-powered asset management and predictive maintenance",
       cost: "Custom pricing based on deployment",
       dataRequirements: "IoT sensor data, equipment information",
-      previewImage: "https://www.ibm.com/content/dam/adobe-cms/instana/media_perfect/product/observability-platform/instana-observability-platform-dashboard-view.component.xl.ts=1689702099719.png/content/adobe-cms/us/en/products/instana/product-page/_jcr_content/root/table_of_contents/body/content_section_styled/content-section-body/image",
+      previewImage: "https://placehold.co/600x400?text=IBM+Maximo",
       vendorLogo: "https://logo.clearbit.com/ibm.com",
       rating: 4.3,
       reviews: 320,
@@ -72,7 +72,7 @@ const ConnectiveMarketplace = () => {
       description: "Advanced AI language model for various tasks",
       cost: "Starting at $20/month for Claude Pro",
       dataRequirements: "Text input",
-      previewImage: "https://www.anthropic.com/images/claude-3/claude_hero.png",
+      previewImage: "https://placehold.co/600x400?text=Claude+3",
       vendorLogo: "https://logo.clearbit.com/anthropic.com",
       rating: 4.8,
       reviews: 500,
@@ -83,7 +83,7 @@ const ConnectiveMarketplace = () => {
       description: "AI-powered code editor and assistant",
       cost: "$20/month per user",
       dataRequirements: "Code repositories",
-      previewImage: "https://cursor.sh/cursor-hero.png",
+      previewImage: "https://placehold.co/600x400?text=Cursor",
       vendorLogo: "https://logo.clearbit.com/cursor.sh",
       rating: 4.6,
       reviews: 280,
@@ -94,7 +94,7 @@ const ConnectiveMarketplace = () => {
       description: "AI-powered document processing and data extraction",
       cost: "Custom pricing based on volume",
       dataRequirements: "Document uploads (invoices, receipts, etc.)",
-      previewImage: "https://rossum.ai/wp-content/uploads/2022/10/rossum-validation-screen-hero.png",
+      previewImage: "https://placehold.co/600x400?text=Rossum",
       vendorLogo: "https://logo.clearbit.com/rossum.ai",
       rating: 4.5,
       reviews: 150,
@@ -105,7 +105,7 @@ const ConnectiveMarketplace = () => {
       description: "AI-powered data labeling and annotation",
       cost: "Custom pricing based on project",
       dataRequirements: "Raw data for labeling",
-      previewImage: "https://scale.com/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fhero-generative-ai.00f5a1ce.png&w=3840&q=75",
+      previewImage: "https://placehold.co/600x400?text=Scale+AI",
       vendorLogo: "https://logo.clearbit.com/scale.com",
       rating: 4.7,
       reviews: 220,
@@ -116,7 +116,7 @@ const ConnectiveMarketplace = () => {
       description: "Conversational AI for various applications",
       cost: "$20/month for ChatGPT Plus",
       dataRequirements: "Text input",
-      previewImage: "https://openai.com/content/images/2022/11/ChatGPT.jpg",
+      previewImage: "https://placehold.co/600x400?text=ChatGPT",
       vendorLogo: "https://logo.clearbit.com/openai.com",
       rating: 4.9,
       reviews: 2000,
@@ -127,7 +127,7 @@ const ConnectiveMarketplace = () => {
       description: "AI content generation for marketing and copywriting",
       cost: "Starting at $49/month",
       dataRequirements: "Brand guidelines and target audience info",
-      previewImage: "https://assets-global.website-files.com/60e5f2de011b86acebc30db7/650c5c6f1d91a330aac1bef6_jasper-hero.webp",
+      previewImage: "https://placehold.co/600x400?text=Jasper",
       vendorLogo: "https://logo.clearbit.com/jasper.ai",
       rating: 4.5,
       reviews: 950,
@@ -138,7 +138,7 @@ const ConnectiveMarketplace = () => {
       description: "End-to-end AI and machine learning platform",
       cost: "Custom pricing based on deployment",
       dataRequirements: "Various data sources, ML models",
-      previewImage: "https://cdn.dataiku.com/assets/images/product/features/visual-ml/visual-ml-2.webp",
+      previewImage: "https://placehold.co/600x400?text=Dataiku",
       vendorLogo: "https://logo.clearbit.com/dataiku.com",
       rating: 4.6,
       reviews: 380,
@@ -263,7 +263,8 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold mb-4">Acme Inc. Dashboard</h2>
+      <h2 className="text-2xl font-bold mb-4">Hello CEO Leon Lee!</h2>
+      <h3 className="text-xl font-semibold mb-4">Acme Inc. Dashboard</h3>
       <Card className="mb-6">
         <CardHeader>
           <CardTitle>Tool Cost Over Time</CardTitle>
