@@ -39,110 +39,130 @@ const ConnectiveMarketplace = () => {
       description: "Advanced analytics and data visualization platform",
       cost: "$70/user/month (billed annually)",
       dataRequirements: "Various data sources (databases, spreadsheets, cloud services)",
-      previewImage: "https://placehold.co/600x400?text=Tableau",
+      previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       vendorLogo: "https://logo.clearbit.com/tableau.com",
       rating: 4.5,
       reviews: 1200,
-      category: "Analytics"
+      category: "Analytics",
+      businessValue: 85,
+      usage: 90
     },
     {
       name: "Intercom",
       description: "Customer messaging platform with AI-powered features",
       cost: "Starting at $74/month (billed annually)",
       dataRequirements: "CRM system integration, customer data",
-      previewImage: "https://placehold.co/600x400?text=Intercom",
+      previewImage: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2073&q=80",
       vendorLogo: "https://logo.clearbit.com/intercom.com",
       rating: 4.4,
       reviews: 850,
-      category: "Customer Support"
+      category: "Customer Support",
+      businessValue: 80,
+      usage: 85
     },
     {
       name: "IBM Maximo",
       description: "AI-powered asset management and predictive maintenance",
       cost: "Custom pricing based on deployment",
       dataRequirements: "IoT sensor data, equipment information",
-      previewImage: "https://placehold.co/600x400?text=IBM+Maximo",
+      previewImage: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       vendorLogo: "https://logo.clearbit.com/ibm.com",
       rating: 4.3,
       reviews: 320,
-      category: "Maintenance"
+      category: "Maintenance",
+      businessValue: 75,
+      usage: 70
     },
     {
       name: "Claude 3",
       description: "Advanced AI language model for various tasks",
       cost: "Starting at $20/month for Claude Pro",
       dataRequirements: "Text input",
-      previewImage: "https://placehold.co/600x400?text=Claude+3",
+      previewImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       vendorLogo: "https://logo.clearbit.com/anthropic.com",
       rating: 4.8,
       reviews: 500,
-      category: "AI Language Model"
+      category: "AI Language Model",
+      businessValue: 90,
+      usage: 95
     },
     {
       name: "Cursor",
       description: "AI-powered code editor and assistant",
       cost: "$20/month per user",
       dataRequirements: "Code repositories",
-      previewImage: "https://placehold.co/600x400?text=Cursor",
+      previewImage: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       vendorLogo: "https://logo.clearbit.com/cursor.sh",
       rating: 4.6,
       reviews: 280,
-      category: "Development Tools"
+      category: "Development Tools",
+      businessValue: 70,
+      usage: 65
     },
     {
       name: "Rossum",
       description: "AI-powered document processing and data extraction",
       cost: "Custom pricing based on volume",
       dataRequirements: "Document uploads (invoices, receipts, etc.)",
-      previewImage: "https://placehold.co/600x400?text=Rossum",
+      previewImage: "https://images.unsplash.com/photo-1568234928966-359c35dd8327?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80",
       vendorLogo: "https://logo.clearbit.com/rossum.ai",
       rating: 4.5,
       reviews: 150,
-      category: "Document Processing"
+      category: "Document Processing",
+      businessValue: 85,
+      usage: 80
     },
     {
       name: "Scale AI",
       description: "AI-powered data labeling and annotation",
       cost: "Custom pricing based on project",
       dataRequirements: "Raw data for labeling",
-      previewImage: "https://placehold.co/600x400?text=Scale+AI",
+      previewImage: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
       vendorLogo: "https://logo.clearbit.com/scale.com",
       rating: 4.7,
       reviews: 220,
-      category: "Data Labeling"
+      category: "Data Labeling",
+      businessValue: 75,
+      usage: 70
     },
     {
       name: "ChatGPT",
       description: "Conversational AI for various applications",
       cost: "$20/month for ChatGPT Plus",
       dataRequirements: "Text input",
-      previewImage: "https://placehold.co/600x400?text=ChatGPT",
+      previewImage: "https://images.unsplash.com/photo-1675271591211-126ad94e495d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       vendorLogo: "https://logo.clearbit.com/openai.com",
       rating: 4.9,
       reviews: 2000,
-      category: "AI Language Model"
+      category: "AI Language Model",
+      businessValue: 95,
+      usage: 100
     },
     {
       name: "Jasper",
       description: "AI content generation for marketing and copywriting",
       cost: "Starting at $49/month",
       dataRequirements: "Brand guidelines and target audience info",
-      previewImage: "https://placehold.co/600x400?text=Jasper",
+      previewImage: "https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1974&q=80",
       vendorLogo: "https://logo.clearbit.com/jasper.ai",
       rating: 4.5,
       reviews: 950,
-      category: "Marketing"
+      category: "Marketing",
+      businessValue: 80,
+      usage: 85
     },
     {
       name: "Dataiku",
       description: "End-to-end AI and machine learning platform",
       cost: "Custom pricing based on deployment",
       dataRequirements: "Various data sources, ML models",
-      previewImage: "https://placehold.co/600x400?text=Dataiku",
+      previewImage: "https://images.unsplash.com/photo-1599658880436-c61792e70672?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       vendorLogo: "https://logo.clearbit.com/dataiku.com",
       rating: 4.6,
       reviews: 380,
-      category: "Machine Learning"
+      category: "Machine Learning",
+      businessValue: 85,
+      usage: 80
     }
   ];
 
@@ -240,18 +260,7 @@ const Dashboard = () => {
     { month: 'Jun', cost: 5500 },
   ];
 
-  const toolUsage = [
-    { name: 'Tableau', users: 50 },
-    { name: 'Intercom', users: 30 },
-    { name: 'IBM Maximo', users: 20 },
-    { name: 'Claude 3', users: 40 },
-    { name: 'Cursor', users: 25 },
-    { name: 'Rossum', users: 15 },
-    { name: 'Scale AI', users: 10 },
-    { name: 'ChatGPT', users: 60 },
-    { name: 'Jasper', users: 35 },
-    { name: 'Dataiku', users: 18 },
-  ];
+  const toolUsage = tools.map(tool => ({ name: tool.name, users: Math.floor(tool.usage * 2) }));
 
   const dataSources = [
     'CRM System',
@@ -261,59 +270,115 @@ const Dashboard = () => {
     'Sales Data Warehouse',
   ];
 
+  const productivityData = tools.map(tool => ({
+    name: tool.name,
+    productivity: (tool.businessValue + tool.usage) / 2,
+  })).sort((a, b) => b.productivity - a.productivity);
+
+  const discontinuedTools = [
+    { name: 'Legacy CRM', reason: 'Replaced by Intercom' },
+    { name: 'Old Analytics Tool', reason: 'Replaced by Tableau' },
+    { name: 'Manual Data Entry System', reason: 'Replaced by Rossum' },
+  ];
+
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Hello CEO Leon Lee!</h2>
       <h3 className="text-xl font-semibold mb-4">Acme Inc. Dashboard</h3>
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle>Tool Cost Over Time</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={costData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Line type="monotone" dataKey="cost" stroke="#f97316" activeDot={{ r: 8 }} />
-            </LineChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Tool Usage by Employees</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {toolUsage.map((tool, index) => (
-                <li key={index} className="flex justify-between items-center">
-                  <span>{tool.name}</span>
-                  <span className="font-semibold">{tool.users} users</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Connected Data Sources</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {dataSources.map((source, index) => (
-                <li key={index} className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                  {source}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      </div>
+      <Tabs defaultValue="overview">
+        <TabsList className="mb-4">
+          <TabsTrigger value="overview">Overview</TabsTrigger>
+          <TabsTrigger value="productivity">Productivity</TabsTrigger>
+          <TabsTrigger value="discontinued">Discontinued Tools</TabsTrigger>
+        </TabsList>
+        <TabsContent value="overview">
+          <Card className="mb-6">
+            <CardHeader>
+              <CardTitle>Tool Cost Over Time</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={costData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="month" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="cost" stroke="#f97316" activeDot={{ r: 8 }} />
+                </LineChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <Card>
+              <CardHeader>
+                <CardTitle>Tool Usage by Employees</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {toolUsage.map((tool, index) => (
+                    <li key={index} className="flex justify-between items-center">
+                      <span>{tool.name}</span>
+                      <span className="font-semibold">{tool.users} users</span>
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Connected Data Sources</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <ul className="space-y-2">
+                  {dataSources.map((source, index) => (
+                    <li key={index} className="flex items-center">
+                      <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                      {source}
+                    </li>
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          </div>
+        </TabsContent>
+        <TabsContent value="productivity">
+          <Card>
+            <CardHeader>
+              <CardTitle>Tool Productivity (Usage vs Business Value)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ResponsiveContainer width="100%" height={400}>
+                <BarChart data={productivityData}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Bar dataKey="productivity" fill="#f97316" />
+                </BarChart>
+              </ResponsiveContainer>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="discontinued">
+          <Card>
+            <CardHeader>
+              <CardTitle>Discontinued Tools</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-4">
+                {discontinuedTools.map((tool, index) => (
+                  <li key={index} className="border-b pb-2">
+                    <h4 className="font-semibold">{tool.name}</h4>
+                    <p className="text-sm text-gray-600">Reason: {tool.reason}</p>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
     </div>
   );
 };
