@@ -4,7 +4,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { BarChart3, Lock, Key, FileText, Star, Search } from "lucide-react";
+import { BarChart3, Lock, Key, FileText, Star, Search, LayoutDashboard } from "lucide-react";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
 const AIToolCard = ({ name, description, cost, dataRequirements, previewImage, vendorLogo, rating, reviews }) => (
   <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:scale-105">
@@ -218,6 +219,88 @@ const APIDocumentation = () => (
   </div>
 );
 
+const Dashboard = () => {
+  const costData = [
+    { month: 'Jan', cost: 4000 },
+    { month: 'Feb', cost: 3000 },
+    { month: 'Mar', cost: 5000 },
+    { month: 'Apr', cost: 4500 },
+    { month: 'May', cost: 6000 },
+    { month: 'Jun', cost: 5500 },
+  ];
+
+  const toolUsage = [
+    { name: 'Smart Analytics', users: 50 },
+    { name: 'AI Customer Service', users: 30 },
+    { name: 'Predictive Maintenance', users: 20 },
+    { name: 'Claude 3.5', users: 40 },
+    { name: 'Cursor', users: 25 },
+  ];
+
+  const dataSources = [
+    'CRM System',
+    'ERP Database',
+    'IoT Sensor Network',
+    'Customer Support Tickets',
+    'Sales Data Warehouse',
+  ];
+
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">Acme Inc. Dashboard</h2>
+      <Card className="mb-6">
+        <CardHeader>
+          <CardTitle>Tool Cost Over Time</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={costData}>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="month" />
+              <YAxis />
+              <Tooltip />
+              <Legend />
+              <Line type="monotone" dataKey="cost" stroke="#f97316" activeDot={{ r: 8 }} />
+            </LineChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Card>
+          <CardHeader>
+            <CardTitle>Tool Usage by Employees</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2">
+              {toolUsage.map((tool, index) => (
+                <li key={index} className="flex justify-between items-center">
+                  <span>{tool.name}</span>
+                  <span className="font-semibold">{tool.users} users</span>
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+        <Card>
+          <CardHeader>
+            <CardTitle>Connected Data Sources</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-2">
+              {dataSources.map((source, index) => (
+                <li key={index} className="flex items-center">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                  {source}
+                </li>
+              ))}
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+};
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-orange-50">
@@ -225,12 +308,16 @@ const Index = () => {
         <h1 className="text-2xl font-bold">CONNECTIVE Hub</h1>
       </header>
       <main className="container mx-auto mt-8 p-4">
-        <Tabs defaultValue="marketplace">
+        <Tabs defaultValue="dashboard">
           <TabsList className="mb-4">
-            <TabsTrigger value="marketplace"><BarChart3 className="mr-2" />Marketplace</TabsTrigger>
+            <TabsTrigger value="dashboard"><LayoutDashboard className="mr-2" />Dashboard</TabsTrigger>
+            <TabsTrigger value="marketplace"><BarChart3 className="mr-2" />CONNECTIVE Marketplace</TabsTrigger>
             <TabsTrigger value="settings"><Lock className="mr-2" />Enterprise Settings</TabsTrigger>
             <TabsTrigger value="api"><FileText className="mr-2" />API Docs</TabsTrigger>
           </TabsList>
+          <TabsContent value="dashboard">
+            <Dashboard />
+          </TabsContent>
           <TabsContent value="marketplace">
             <ConnectiveMarketplace />
           </TabsContent>
