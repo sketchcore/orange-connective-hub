@@ -70,7 +70,7 @@ const AIMarketplace = () => {
 
   const filteredTools = tools.filter(tool => 
     tool.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    (filterCategory === '' || tool.category === filterCategory)
+    (filterCategory === 'all' || tool.category === filterCategory)
   );
 
   return (
@@ -92,7 +92,7 @@ const AIMarketplace = () => {
             <SelectValue placeholder="Filter by category" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="">All Categories</SelectItem>
+            <SelectItem value="all">All Categories</SelectItem>
             <SelectItem value="Analytics">Analytics</SelectItem>
             <SelectItem value="Customer Support">Customer Support</SelectItem>
             <SelectItem value="Maintenance">Maintenance</SelectItem>
