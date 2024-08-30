@@ -554,7 +554,7 @@ const Index = () => {
             <TabsTrigger value="dashboard"><LayoutDashboard className="mr-2" />Dashboard</TabsTrigger>
             <TabsTrigger value="marketplace"><BarChart3 className="mr-2" />CONNECTIVE Marketplace</TabsTrigger>
             <TabsTrigger value="settings"><Lock className="mr-2" />Enterprise Settings</TabsTrigger>
-            <TabsTrigger value="api"><FileText className="mr-2" />API Docs</TabsTrigger>
+            <TabsTrigger value="integration"><FileText className="mr-2" />Integration</TabsTrigger>
           </TabsList>
           <TabsContent value="dashboard">
             <Dashboard />
@@ -565,8 +565,8 @@ const Index = () => {
           <TabsContent value="settings">
             <EnterpriseSettings />
           </TabsContent>
-          <TabsContent value="api">
-            <APIDocumentation />
+          <TabsContent value="integration">
+            <Integration />
           </TabsContent>
         </Tabs>
       </main>
