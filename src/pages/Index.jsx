@@ -213,36 +213,40 @@ const ConnectiveMarketplace = () => {
 
 const EnterpriseSettings = () => {
   const roles = [
-    { name: 'C-Suite', permissions: ['Full Access', 'Strategic Decision Making'] },
-    { name: 'Department Head', permissions: ['Department-wide Access', 'Approve Department Tools'] },
-    { name: 'Manager', permissions: ['Team Access', 'Approve Team Tools', 'View Reports'] },
-    { name: 'Employee', permissions: ['Use Approved Tools', 'Submit Requests'] },
-    { name: 'IT Admin', permissions: ['Manage All Tools', 'Security Configuration', 'User Management'] },
-    { name: 'HR', permissions: ['Employee Data Access', 'Onboarding/Offboarding'] },
-    { name: 'Finance', permissions: ['Financial Data Access', 'Budget Approval'] },
-    { name: 'Legal', permissions: ['Compliance Monitoring', 'Contract Review'] },
-    { name: 'External Consultant', permissions: ['Limited Access', 'Project-specific Tools'] },
+    { name: 'C-Suite', permissions: ['Full Access', 'Strategic Decision Making'], departments: ['All Departments'] },
+    { name: 'Department Head', permissions: ['Department-wide Access', 'Approve Department Tools'], departments: ['Assigned Department', 'Cross-functional Projects'] },
+    { name: 'Manager', permissions: ['Team Access', 'Approve Team Tools', 'View Reports'], departments: ['Assigned Department', 'Related Departments'] },
+    { name: 'Employee', permissions: ['Use Approved Tools', 'Submit Requests'], departments: ['Assigned Department'] },
+    { name: 'IT Admin', permissions: ['Manage All Tools', 'Security Configuration', 'User Management'], departments: ['All Departments'] },
+    { name: 'HR', permissions: ['Employee Data Access', 'Onboarding/Offboarding'], departments: ['HR', 'Limited All Departments'] },
+    { name: 'Finance', permissions: ['Financial Data Access', 'Budget Approval'], departments: ['Finance', 'Limited All Departments'] },
+    { name: 'Legal', permissions: ['Compliance Monitoring', 'Contract Review'], departments: ['Legal', 'Limited All Departments'] },
+    { name: 'External Consultant', permissions: ['Limited Access', 'Project-specific Tools'], departments: ['Assigned Project'] },
+    { name: 'Data Scientist', permissions: ['Data Access', 'Model Development', 'Analytics Tools'], departments: ['Data Science', 'Research', 'Product'] },
+    { name: 'Product Manager', permissions: ['Product Roadmap', 'Feature Prioritization', 'Analytics Access'], departments: ['Product', 'Engineering', 'Marketing'] },
+    { name: 'Customer Support Lead', permissions: ['Support Tool Administration', 'Customer Data Access'], departments: ['Customer Support', 'Product'] },
   ];
 
-  const departments = ['Executive', 'IT', 'HR', 'Finance', 'Legal', 'Marketing', 'Sales', 'Product', 'Engineering', 'Customer Support'];
-
   const securitySettings = [
-    { name: 'Multi-Factor Authentication', enabled: true, description: 'Requires 2FA for all user logins' },
-    { name: 'Single Sign-On (SSO)', enabled: true, description: 'Integrated with company-wide SSO solution' },
-    { name: 'IP Whitelisting', enabled: true, description: 'Restricts access to approved IP ranges' },
-    { name: 'Data Encryption at Rest', enabled: true, description: 'All stored data is encrypted' },
-    { name: 'Data Encryption in Transit', enabled: true, description: 'All data transfers use TLS 1.3' },
-    { name: 'Regular Security Audits', enabled: true, description: 'Quarterly third-party security assessments' },
-    { name: 'User Activity Logging', enabled: true, description: 'Detailed logs of all user actions' },
-    { name: 'Data Loss Prevention (DLP)', enabled: true, description: 'Prevents unauthorized data exfiltration' },
-    { name: 'GDPR Compliance', enabled: true, description: 'Adheres to EU data protection regulations' },
-    { name: 'CCPA Compliance', enabled: true, description: 'Complies with California Consumer Privacy Act' },
-    { name: 'SOC 2 Compliance', enabled: true, description: 'Annual SOC 2 Type II audit' },
-    { name: 'Vendor Risk Assessment', enabled: true, description: 'Regular security reviews of all integrated tools' },
+    { name: 'Multi-Factor Authentication (MFA)', enabled: true, description: 'Enforces 2FA for all user logins using authenticator apps or hardware tokens' },
+    { name: 'Single Sign-On (SSO)', enabled: true, description: 'Integrated with company-wide SSO solution (Okta)' },
+    { name: 'IP Whitelisting', enabled: true, description: 'Restricts access to approved IP ranges and VPN' },
+    { name: 'Data Encryption at Rest', enabled: true, description: 'All stored data is encrypted using AES-256' },
+    { name: 'Data Encryption in Transit', enabled: true, description: 'All data transfers use TLS 1.3 with perfect forward secrecy' },
+    { name: 'Regular Security Audits', enabled: true, description: 'Quarterly third-party security assessments and penetration testing' },
+    { name: 'User Activity Logging', enabled: true, description: 'Detailed logs of all user actions with retention policy' },
+    { name: 'Data Loss Prevention (DLP)', enabled: true, description: 'Prevents unauthorized data exfiltration and monitors sensitive data access' },
+    { name: 'GDPR Compliance', enabled: true, description: 'Adheres to EU data protection regulations including data subject rights' },
+    { name: 'CCPA Compliance', enabled: true, description: 'Complies with California Consumer Privacy Act requirements' },
+    { name: 'SOC 2 Type II Compliance', enabled: true, description: 'Annual SOC 2 Type II audit for security, availability, and confidentiality' },
+    { name: 'Vendor Risk Assessment', enabled: true, description: 'Regular security reviews of all integrated tools and third-party vendors' },
+    { name: 'Data Retention and Deletion Policy', enabled: true, description: 'Automated data lifecycle management and secure deletion processes' },
+    { name: 'Access Control Reviews', enabled: true, description: 'Quarterly reviews of user access rights and permissions' },
+    { name: 'Incident Response Plan', enabled: true, description: 'Documented and regularly tested incident response procedures' },
   ];
 
   return (
-    <div>
+    <div className="relative">
       <h2 className="text-2xl font-bold mb-4">Hello CISO Leon Lee!</h2>
       <h3 className="text-xl font-semibold mb-4">Enterprise Settings</h3>
       <Tabs defaultValue="rbac">
@@ -259,27 +263,23 @@ const EnterpriseSettings = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Role</TableHead>
-                    <TableHead>Permissions</TableHead>
-                    <TableHead>Departments</TableHead>
+                    <TableHead className="w-1/4">Role</TableHead>
+                    <TableHead className="w-1/2">Permissions</TableHead>
+                    <TableHead className="w-1/4">Departments</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {roles.map((role, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{role.name}</TableCell>
-                      <TableCell>
+                    <TableRow key={index} className="h-auto">
+                      <TableCell className="py-2">{role.name}</TableCell>
+                      <TableCell className="py-2">
                         <ul className="list-disc list-inside">
                           {role.permissions.map((perm, i) => (
                             <li key={i}>{perm}</li>
                           ))}
                         </ul>
                       </TableCell>
-                      <TableCell>
-                        {role.name === 'C-Suite' || role.name === 'IT Admin'
-                          ? 'All Departments'
-                          : departments.filter(() => Math.random() > 0.5).join(', ')}
-                      </TableCell>
+                      <TableCell className="py-2">{role.departments.join(', ')}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -297,21 +297,21 @@ const EnterpriseSettings = () => {
               <Table>
                 <TableHeader>
                   <TableRow>
-                    <TableHead>Setting</TableHead>
-                    <TableHead>Status</TableHead>
+                    <TableHead className="w-1/4">Setting</TableHead>
+                    <TableHead className="w-1/6">Status</TableHead>
                     <TableHead>Description</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
                   {securitySettings.map((setting, index) => (
-                    <TableRow key={index}>
-                      <TableCell>{setting.name}</TableCell>
-                      <TableCell>
+                    <TableRow key={index} className="h-auto">
+                      <TableCell className="py-2">{setting.name}</TableCell>
+                      <TableCell className="py-2">
                         <Badge variant={setting.enabled ? "success" : "destructive"}>
                           {setting.enabled ? 'Enabled' : 'Disabled'}
                         </Badge>
                       </TableCell>
-                      <TableCell>{setting.description}</TableCell>
+                      <TableCell className="py-2">{setting.description}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -321,38 +321,97 @@ const EnterpriseSettings = () => {
           </Card>
         </TabsContent>
       </Tabs>
-      <Card className="mt-4">
-        <CardHeader>
-          <CardTitle>Connective Support</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="mb-2">Need immediate assistance? Our AI-powered support is here to help!</p>
-          <Button className="bg-orange-500 hover:bg-orange-600">
+      <div className="fixed bottom-4 right-4 w-64 bg-white shadow-lg rounded-lg overflow-hidden">
+        <div className="bg-orange-500 text-white p-3 font-bold">Connective Support</div>
+        <div className="p-4">
+          <p className="mb-2 text-sm">Need immediate assistance? Our AI-powered support is here to help!</p>
+          <Button className="w-full bg-orange-500 hover:bg-orange-600">
             <MessageSquare className="mr-2 h-4 w-4" /> Chat with Support
           </Button>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 };
 
-const APIDocumentation = () => (
+const Integration = () => (
   <div>
     <h2 className="text-2xl font-bold mb-4">Hello CTO Leon Lee!</h2>
-    <h3 className="text-xl font-semibold mb-4">API Documentation</h3>
-    <Card>
+    <h3 className="text-xl font-semibold mb-4">Integration</h3>
+    <Card className="mb-6">
+      <CardHeader>
+        <CardTitle>One-Time Installation</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="mb-4">Our integration process is designed for a smooth, one-time installation. Once set up, you'll have access to all our features and can easily manage them through your dashboard.</p>
+        <Button className="bg-orange-500 hover:bg-orange-600">Start Installation</Button>
+      </CardContent>
+    </Card>
+    <Card className="mb-6">
       <CardHeader>
         <CardTitle>Standardized API Access</CardTitle>
       </CardHeader>
       <CardContent>
-        <p>Access our comprehensive API documentation for seamless integration.</p>
+        <p className="mb-2">Our RESTful API provides comprehensive access to all Connective features:</p>
         <ul className="list-disc list-inside mt-2 space-y-1">
-          <li>Authentication endpoints</li>
-          <li>Data retrieval methods</li>
-          <li>Webhook integrations</li>
-          <li>Rate limiting information</li>
+          <li>OAuth 2.0 authentication</li>
+          <li>CRUD operations for all resources</li>
+          <li>Webhook support for real-time updates</li>
+          <li>Rate limiting with generous allowances</li>
+          <li>Detailed error messages and status codes</li>
         </ul>
         <Button className="mt-4 bg-orange-500 hover:bg-orange-600">View API Docs</Button>
+      </CardContent>
+    </Card>
+    <Card className="mb-6">
+      <CardHeader>
+        <CardTitle>SDKs for Major Languages</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="mb-2">We offer official SDKs for rapid integration:</p>
+        <ul className="list-disc list-inside mt-2 space-y-1">
+          <li>Python</li>
+          <li>JavaScript/TypeScript</li>
+          <li>Java</li>
+          <li>C#</li>
+          <li>Ruby</li>
+          <li>Go</li>
+        </ul>
+        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Download SDKs</Button>
+      </CardContent>
+    </Card>
+    <Card className="mb-6">
+      <CardHeader>
+        <CardTitle>Open-Source and Common Connectors</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="mb-2">Leverage our pre-built connectors for popular platforms:</p>
+        <ul className="list-disc list-inside mt-2 space-y-1">
+          <li>Salesforce</li>
+          <li>SAP</li>
+          <li>Oracle</li>
+          <li>Microsoft Dynamics</li>
+          <li>Shopify</li>
+          <li>Zendesk</li>
+        </ul>
+        <p className="mt-2">Our open-source connector framework allows for easy customization and development of new connectors.</p>
+        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Explore Connectors</Button>
+      </CardContent>
+    </Card>
+    <Card>
+      <CardHeader>
+        <CardTitle>Cloud Deployment Support</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="mb-2">We offer deployment support for major cloud platforms:</p>
+        <ul className="list-disc list-inside mt-2 space-y-1">
+          <li>AWS (Amazon Web Services)</li>
+          <li>Microsoft Azure</li>
+          <li>Google Cloud Platform</li>
+          <li>IBM Cloud</li>
+        </ul>
+        <p className="mt-2">Our team can assist with cloud-specific optimizations, security configurations, and scalability planning.</p>
+        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Request Deployment Support</Button>
       </CardContent>
     </Card>
   </div>
