@@ -16,11 +16,19 @@ const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLog
   const [currentStep, setCurrentStep] = useState(0);
 
   const installSteps = [
-    "Stakeholder Approvals",
-    "Auto-Provisioning",
-    "Data Integration",
-    "Security Checks",
-    "User Onboarding"
+    { name: "Initial Setup", status: "pending" },
+    { name: "Auto-Provisioning", status: "pending" },
+    { name: "Data Connections", status: "pending" },
+    { name: "Security Configuration", status: "pending" },
+    { name: "Integration Testing", status: "pending" },
+    { name: "User Onboarding", status: "pending" }
+  ];
+
+  const approvals = [
+    { name: "Manager Approval", status: "pending", date: null },
+    { name: "Finance Approval", status: "pending", date: null },
+    { name: "IT Approval", status: "pending", date: null },
+    { name: "Legal Approval", status: "pending", date: null }
   ];
 
   const handleInstall = () => {
@@ -36,8 +44,15 @@ const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLog
     }, 2000);
   };
 
+  const handleApproval = (index) => {
+    const newApprovals = [...approvals];
+    newApprovals[index].status = "approved";
+    newApprovals[index].date = new Date().toLocaleDateString();
+    setApprovals(newApprovals);
+  };
+
   return (
-    <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-orange-50">
+    <Card className={`mb-4 transition-all duration-300 hover:shadow-lg hover:bg-orange-50 ${showProgress ? 'h-auto' : 'h-[500px]'}`}>
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg">{name}</CardTitle>
@@ -65,8 +80,26 @@ const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLog
           </Button>
         ) : (
           <div className="mt-4">
-            <Progress value={(currentStep + 1) / installSteps.length * 100} className="w-full" />
-            <p className="text-sm mt-2">{installSteps[currentStep]}</p>
+            <h4 className="font-bold mb-2">Installation Progress</h4>
+            {installSteps.map((step, index) => (
+              <div key={index} className="flex items-center mb-2">
+                <div className={`w-4 h-4 rounded-full mr-2 ${index <= currentStep ? 'bg-green-500' : 'bg-gray-300'}`}></div>
+                <span className={index <= currentStep ? 'text-green-500' : 'text-gray-500'}>{step.name}</span>
+              </div>
+            ))}
+            <h4 className="font-bold mt-4 mb-2">Manual Approvals</h4>
+            {approvals.map((approval, index) => (
+              <div key={index} className="flex items-center justify-between mb-2">
+                <span>{approval.name}</span>
+                {approval.status === 'pending' ? (
+                  <Button onClick={() => handleApproval(index)} size="sm" variant="outline">
+                    Approve
+                  </Button>
+                ) : (
+                  <span className="text-green-500">Approved on {approval.date}</span>
+                )}
+              </div>
+            ))}
           </div>
         )}
       </CardContent>
