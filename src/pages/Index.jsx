@@ -14,21 +14,20 @@ import { Progress } from "@/components/ui/progress";
 const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLogo, rating, reviews, quote }) => {
   const [showProgress, setShowProgress] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
-
-  const installSteps = [
-    { name: "Initial Setup", status: "pending" },
-    { name: "Auto-Provisioning", status: "pending" },
-    { name: "Data Connections", status: "pending" },
-    { name: "Security Configuration", status: "pending" },
-    { name: "Integration Testing", status: "pending" },
-    { name: "User Onboarding", status: "pending" }
-  ];
-
-  const approvals = [
+  const [approvals, setApprovals] = useState([
     { name: "Manager Approval", status: "pending", date: null },
     { name: "Finance Approval", status: "pending", date: null },
     { name: "IT Approval", status: "pending", date: null },
     { name: "Legal Approval", status: "pending", date: null }
+  ]);
+
+  const installSteps = [
+    "Initial Setup",
+    "Auto-Provisioning",
+    "Data Connections",
+    "Security Configuration",
+    "Integration Testing",
+    "User Onboarding"
   ];
 
   const handleInstall = () => {
@@ -44,15 +43,13 @@ const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLog
     }, 2000);
   };
 
-  const handleApproval = (index) => {
-    const newApprovals = [...approvals];
-    newApprovals[index].status = "approved";
-    newApprovals[index].date = new Date().toLocaleDateString();
-    setApprovals(newApprovals);
+  const handleRemind = (index) => {
+    // In a real application, this would send a reminder to the approver
+    console.log(`Reminder sent to ${approvals[index].name}`);
   };
 
   return (
-    <Card className={`mb-4 transition-all duration-300 hover:shadow-lg hover:bg-orange-50 ${showProgress ? 'h-auto' : 'h-[500px]'}`}>
+    <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:bg-orange-50">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg">{name}</CardTitle>
@@ -79,28 +76,59 @@ const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLog
             Install Now
           </Button>
         ) : (
-          <div className="mt-4">
-            <h4 className="font-bold mb-2">Installation Progress</h4>
-            {installSteps.map((step, index) => (
-              <div key={index} className="flex items-center mb-2">
-                <div className={`w-4 h-4 rounded-full mr-2 ${index <= currentStep ? 'bg-green-500' : 'bg-gray-300'}`}></div>
-                <span className={index <= currentStep ? 'text-green-500' : 'text-gray-500'}>{step.name}</span>
+          <Dialog>
+            <DialogTrigger asChild>
+              <Button className="mt-4 w-full bg-orange-500 hover:bg-orange-600">View Installation Progress</Button>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[425px]">
+              <DialogHeader>
+                <DialogTitle>Installation Progress</DialogTitle>
+              </DialogHeader>
+              <div className="py-4">
+                <div className="relative pt-1">
+                  <div className="flex mb-2 items-center justify-between">
+                    <div>
+                      <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-orange-600 bg-orange-200">
+                        Progress
+                      </span>
+                    </div>
+                    <div className="text-right">
+                      <span className="text-xs font-semibold inline-block text-orange-600">
+                        {Math.round((currentStep / (installSteps.length - 1)) * 100)}%
+                      </span>
+                    </div>
+                  </div>
+                  <div className="overflow-hidden h-2 mb-4 text-xs flex rounded bg-orange-200">
+                    <div style={{ width: `${(currentStep / (installSteps.length - 1)) * 100}%` }} className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-orange-500"></div>
+                  </div>
+                  <div className="flex justify-between">
+                    {installSteps.map((step, index) => (
+                      <div key={index} className="flex flex-col items-center">
+                        <div className={`w-3 h-3 rounded-full ${index <= currentStep ? 'bg-orange-500' : 'bg-gray-300'}`}></div>
+                        <span className="text-xs mt-1">{step}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+                <h4 className="font-bold mt-4 mb-2">Manual Approvals</h4>
+                {approvals.map((approval, index) => (
+                  <div key={index} className="flex items-center justify-between mb-2">
+                    <span>{approval.name}</span>
+                    {approval.status === 'pending' ? (
+                      <div>
+                        <Badge variant="outline" className="mr-2">Pending</Badge>
+                        <Button onClick={() => handleRemind(index)} size="sm" variant="outline">
+                          Remind
+                        </Button>
+                      </div>
+                    ) : (
+                      <Badge variant="success">Approved on {approval.date}</Badge>
+                    )}
+                  </div>
+                ))}
               </div>
-            ))}
-            <h4 className="font-bold mt-4 mb-2">Manual Approvals</h4>
-            {approvals.map((approval, index) => (
-              <div key={index} className="flex items-center justify-between mb-2">
-                <span>{approval.name}</span>
-                {approval.status === 'pending' ? (
-                  <Button onClick={() => handleApproval(index)} size="sm" variant="outline">
-                    Approve
-                  </Button>
-                ) : (
-                  <span className="text-green-500">Approved on {approval.date}</span>
-                )}
-              </div>
-            ))}
-          </div>
+            </DialogContent>
+          </Dialog>
         )}
       </CardContent>
     </Card>
