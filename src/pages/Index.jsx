@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { BarChart3, Lock, Key, FileText, Star, Search, LayoutDashboard } from "lucide-react";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-const AIToolCard = ({ name, description, cost, dataRequirements, previewImage, vendorLogo, rating, reviews }) => (
+const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLogo, rating, reviews, quote }) => (
   <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-orange-50">
     <CardHeader>
       <div className="flex items-center justify-between">
@@ -19,11 +19,17 @@ const AIToolCard = ({ name, description, cost, dataRequirements, previewImage, v
     <CardContent>
       <img src={previewImage} alt={name} className="w-full h-40 object-cover mb-4 rounded transition-all duration-300 hover:opacity-80 hover:shadow-md" />
       <p><strong>Cost:</strong> {cost}</p>
-      <p><strong>Data Needs:</strong> {dataRequirements}</p>
+      <p><strong>Workflow:</strong></p>
+      <ol className="list-decimal list-inside mb-2">
+        {workflow.map((step, index) => (
+          <li key={index}>{step}</li>
+        ))}
+      </ol>
       <div className="flex items-center mt-2">
         <Star className="text-yellow-400 mr-1" />
         <span>{rating} ({reviews} reviews)</span>
       </div>
+      <p className="text-sm italic mt-2">"{quote.text}" - {quote.author}</p>
       <Button className="mt-4 w-full bg-orange-500 hover:bg-orange-600 transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">Install Now</Button>
     </CardContent>
   </Card>
@@ -38,111 +44,121 @@ const ConnectiveMarketplace = () => {
       name: "Tableau",
       description: "Advanced analytics and data visualization platform",
       cost: "$70/user/month (billed annually)",
-      dataRequirements: "Various data sources (databases, spreadsheets, cloud services)",
-      previewImage: "https://placehold.co/600x400?text=Tableau",
+      workflow: ["Connect data sources", "Create visualizations", "Share insights"],
+      previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/tableau.com",
       rating: 4.5,
       reviews: 1200,
-      category: "Analytics"
+      category: "Analytics",
+      quote: { text: "Transformed our data into actionable insights", author: "Sarah from Business Intelligence" }
     },
     {
       name: "Intercom",
       description: "Customer messaging platform with AI-powered features",
       cost: "Starting at $74/month (billed annually)",
-      dataRequirements: "CRM system integration, customer data",
-      previewImage: "https://placehold.co/600x400?text=Intercom",
+      workflow: ["Set up chatbot", "Engage with customers", "Analyze conversations"],
+      previewImage: "https://images.unsplash.com/photo-1556745757-8d76bdb6984b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/intercom.com",
       rating: 4.4,
       reviews: 850,
-      category: "Customer Support"
+      category: "Customer Support",
+      quote: { text: "Streamlined our customer support process", author: "Mike from Customer Success" }
     },
     {
       name: "IBM Maximo",
       description: "AI-powered asset management and predictive maintenance",
       cost: "Custom pricing based on deployment",
-      dataRequirements: "IoT sensor data, equipment information",
-      previewImage: "https://placehold.co/600x400?text=IBM+Maximo",
+      workflow: ["Monitor assets", "Predict maintenance needs", "Schedule repairs"],
+      previewImage: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/ibm.com",
       rating: 4.3,
       reviews: 320,
-      category: "Maintenance"
+      category: "Maintenance",
+      quote: { text: "Reduced downtime by 30%", author: "Alex from Operations" }
     },
     {
       name: "Claude 3",
       description: "Advanced AI language model for various tasks",
       cost: "Starting at $20/month for Claude Pro",
-      dataRequirements: "Text input",
-      previewImage: "https://placehold.co/600x400?text=Claude+3",
+      workflow: ["Input your query", "Receive AI-generated response", "Refine and iterate"],
+      previewImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/anthropic.com",
       rating: 4.8,
       reviews: 500,
-      category: "AI Language Model"
+      category: "AI Language Model",
+      quote: { text: "Boosted our content creation efficiency", author: "Emma from Marketing" }
     },
     {
       name: "Cursor",
       description: "AI-powered code editor and assistant",
       cost: "$20/month per user",
-      dataRequirements: "Code repositories",
-      previewImage: "https://placehold.co/600x400?text=Cursor",
+      workflow: ["Write code", "Get AI suggestions", "Debug efficiently"],
+      previewImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/cursor.sh",
       rating: 4.6,
       reviews: 280,
-      category: "Development Tools"
+      category: "Development Tools",
+      quote: { text: "Increased coding productivity by 40%", author: "David from Engineering" }
     },
     {
       name: "Rossum",
       description: "AI-powered document processing and data extraction",
       cost: "Custom pricing based on volume",
-      dataRequirements: "Document uploads (invoices, receipts, etc.)",
-      previewImage: "https://placehold.co/600x400?text=Rossum",
+      workflow: ["Upload documents", "AI extracts data", "Review and approve"],
+      previewImage: "https://images.unsplash.com/photo-1568234928966-359c35dd8327?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/rossum.ai",
       rating: 4.5,
       reviews: 150,
-      category: "Document Processing"
+      category: "Document Processing",
+      quote: { text: "Cut invoice processing time in half", author: "Linda from Finance" }
     },
     {
       name: "Scale AI",
       description: "AI-powered data labeling and annotation",
       cost: "Custom pricing based on project",
-      dataRequirements: "Raw data for labeling",
-      previewImage: "https://placehold.co/600x400?text=Scale+AI",
+      workflow: ["Upload raw data", "AI labels data", "Human review"],
+      previewImage: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/scale.com",
       rating: 4.7,
       reviews: 220,
-      category: "Data Labeling"
+      category: "Data Labeling",
+      quote: { text: "Accelerated our ML model development", author: "Tom from Data Science" }
     },
     {
       name: "ChatGPT",
       description: "Conversational AI for various applications",
       cost: "$20/month for ChatGPT Plus",
-      dataRequirements: "Text input",
-      previewImage: "https://placehold.co/600x400?text=ChatGPT",
+      workflow: ["Ask a question", "Receive AI response", "Refine or follow up"],
+      previewImage: "https://images.unsplash.com/photo-1675271591211-126ad94e495d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/openai.com",
       rating: 4.9,
       reviews: 2000,
-      category: "AI Language Model"
+      category: "AI Language Model",
+      quote: { text: "Revolutionized our customer interactions", author: "Rachel from Sales" }
     },
     {
       name: "Jasper",
       description: "AI content generation for marketing and copywriting",
       cost: "Starting at $49/month",
-      dataRequirements: "Brand guidelines and target audience info",
-      previewImage: "https://placehold.co/600x400?text=Jasper",
+      workflow: ["Input content brief", "AI generates content", "Edit and refine"],
+      previewImage: "https://images.unsplash.com/photo-1542435503-956c469947f6?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/jasper.ai",
       rating: 4.5,
       reviews: 950,
-      category: "Marketing"
+      category: "Marketing",
+      quote: { text: "Doubled our content output", author: "Chris from Content Marketing" }
     },
     {
       name: "Dataiku",
       description: "End-to-end AI and machine learning platform",
       cost: "Custom pricing based on deployment",
-      dataRequirements: "Various data sources, ML models",
-      previewImage: "https://placehold.co/600x400?text=Dataiku",
+      workflow: ["Prepare data", "Build ML models", "Deploy and monitor"],
+      previewImage: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80",
       vendorLogo: "https://logo.clearbit.com/dataiku.com",
       rating: 4.6,
       reviews: 380,
-      category: "Machine Learning"
+      category: "Machine Learning",
+      quote: { text: "Unified our data science workflow", author: "Olivia from Analytics" }
     }
   ];
 
@@ -154,21 +170,22 @@ const ConnectiveMarketplace = () => {
   const displayTools = filteredTools.length > 0 ? filteredTools : tools.slice(0, 10);
 
   return (
-    <div>
-      <h2 className="text-2xl font-bold mb-4">CONNECTIVE Marketplace</h2>
-      <div className="flex mb-4 gap-4">
+    <div className="p-4">
+      <h2 className="text-2xl font-bold mb-4">Hello Jane from Product Design Department</h2>
+      <h3 className="text-xl font-semibold mb-4">CONNECTIVE Marketplace</h3>
+      <div className="flex flex-col md:flex-row mb-4 gap-4">
         <div className="relative flex-grow">
           <Search className="absolute left-2 top-3 h-4 w-4 text-gray-400" />
           <Input
             type="text"
             placeholder="Search tools..."
-            className="pl-8"
+            className="pl-8 w-full"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
         </div>
         <Select value={filterCategory} onValueChange={setFilterCategory}>
-          <SelectTrigger className="w-[180px]">
+          <SelectTrigger className="w-full md:w-[180px]">
             <SelectValue placeholder="Filter by category" />
           </SelectTrigger>
           <SelectContent>
