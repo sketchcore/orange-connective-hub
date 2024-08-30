@@ -9,34 +9,70 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { Badge } from "@/components/ui/badge";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Progress } from "@/components/ui/progress";
 
-const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLogo, rating, reviews, quote }) => (
-  <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-orange-50">
-    <CardHeader>
-      <div className="flex items-center justify-between">
-        <CardTitle className="text-lg">{name}</CardTitle>
-        <img src={vendorLogo} alt="Vendor Logo" className="h-8 w-8" />
-      </div>
-      <CardDescription>{description}</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <img src={previewImage} alt={name} className="w-full h-40 object-cover mb-4 rounded transition-all duration-300 hover:opacity-80 hover:shadow-md" />
-      <p><strong>Cost:</strong> {cost}</p>
-      <p><strong>Workflow:</strong></p>
-      <ol className="list-decimal list-inside mb-2">
-        {workflow.map((step, index) => (
-          <li key={index}>{step}</li>
-        ))}
-      </ol>
-      <div className="flex items-center mt-2">
-        <Star className="text-yellow-400 mr-1" />
-        <span>{rating} ({reviews} reviews)</span>
-      </div>
-      <p className="text-sm italic mt-2">"{quote.text}" - {quote.author}</p>
-      <Button className="mt-4 w-full bg-orange-500 hover:bg-orange-600 transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">Install Now</Button>
-    </CardContent>
-  </Card>
-);
+const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLogo, rating, reviews, quote }) => {
+  const [showProgress, setShowProgress] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
+
+  const installSteps = [
+    "Stakeholder Approvals",
+    "Auto-Provisioning",
+    "Data Integration",
+    "Security Checks",
+    "User Onboarding"
+  ];
+
+  const handleInstall = () => {
+    setShowProgress(true);
+    const interval = setInterval(() => {
+      setCurrentStep((prevStep) => {
+        if (prevStep === installSteps.length - 1) {
+          clearInterval(interval);
+          return prevStep;
+        }
+        return prevStep + 1;
+      });
+    }, 2000);
+  };
+
+  return (
+    <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-orange-50">
+      <CardHeader>
+        <div className="flex items-center justify-between">
+          <CardTitle className="text-lg">{name}</CardTitle>
+          <img src={vendorLogo} alt="Vendor Logo" className="h-8 w-8" />
+        </div>
+        <CardDescription>{description}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <img src={previewImage} alt={name} className="w-full h-40 object-cover mb-4 rounded transition-all duration-300 hover:opacity-80 hover:shadow-md" />
+        <p><strong>Cost:</strong> {cost}</p>
+        <p><strong>Workflow:</strong></p>
+        <ol className="list-decimal list-inside mb-2">
+          {workflow.map((step, index) => (
+            <li key={index}>{step}</li>
+          ))}
+        </ol>
+        <div className="flex items-center mt-2">
+          <Star className="text-yellow-400 mr-1" />
+          <span>{rating} ({reviews} reviews)</span>
+        </div>
+        <p className="text-sm italic mt-2">"{quote.text}" - {quote.author}</p>
+        {!showProgress ? (
+          <Button onClick={handleInstall} className="mt-4 w-full bg-orange-500 hover:bg-orange-600 transition-all duration-300 hover:shadow-lg hover:translate-y-[-2px]">
+            Install Now
+          </Button>
+        ) : (
+          <div className="mt-4">
+            <Progress value={(currentStep + 1) / installSteps.length * 100} className="w-full" />
+            <p className="text-sm mt-2">{installSteps[currentStep]}</p>
+          </div>
+        )}
+      </CardContent>
+    </Card>
+  );
+};
 
 const ConnectiveMarketplace = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -347,19 +383,16 @@ const ConnectiveStudio = () => (
         <Button className="bg-orange-500 hover:bg-orange-600">Start Installation</Button>
       </CardContent>
     </Card>
-    <div className="grid grid-cols-2 gap-6">
+    <div className="grid grid-cols-3 gap-4">
       <Card>
         <CardHeader>
           <CardTitle>Standardized API Access</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="mb-2">Our RESTful API provides:</p>
           <ul className="list-disc list-inside mt-2 space-y-1">
             <li>OAuth 2.0 authentication</li>
             <li>CRUD operations</li>
             <li>Webhook support</li>
-            <li>Rate limiting</li>
-            <li>Detailed error handling</li>
           </ul>
           <Button className="mt-4 bg-orange-500 hover:bg-orange-600">View API Docs</Button>
         </CardContent>
@@ -369,14 +402,10 @@ const ConnectiveStudio = () => (
           <CardTitle>SDKs for Major Languages</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="mb-2">Official SDKs available for:</p>
           <ul className="list-disc list-inside mt-2 space-y-1">
             <li>Python</li>
             <li>JavaScript/TypeScript</li>
             <li>Java</li>
-            <li>C#</li>
-            <li>Ruby</li>
-            <li>Go</li>
           </ul>
           <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Download SDKs</Button>
         </CardContent>
@@ -386,14 +415,10 @@ const ConnectiveStudio = () => (
           <CardTitle>Open-Source Connectors</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="mb-2">Pre-built connectors for:</p>
           <ul className="list-disc list-inside mt-2 space-y-1">
             <li>Salesforce</li>
             <li>SAP</li>
             <li>Oracle</li>
-            <li>Microsoft Dynamics</li>
-            <li>Shopify</li>
-            <li>Zendesk</li>
           </ul>
           <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Explore Connectors</Button>
         </CardContent>
@@ -403,33 +428,41 @@ const ConnectiveStudio = () => (
           <CardTitle>Cloud Deployment Support</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="mb-2">Deployment support for:</p>
           <ul className="list-disc list-inside mt-2 space-y-1">
             <li>AWS</li>
             <li>Microsoft Azure</li>
             <li>Google Cloud Platform</li>
-            <li>IBM Cloud</li>
           </ul>
           <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Request Support</Button>
         </CardContent>
       </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Data Requirements Integration</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="list-disc list-inside mt-2 space-y-1">
+            <li>Automated data mapping</li>
+            <li>Data quality checks</li>
+            <li>Schema validation</li>
+          </ul>
+          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Configure Integration</Button>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Security & Compliance</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="list-disc list-inside mt-2 space-y-1">
+            <li>End-to-end encryption</li>
+            <li>GDPR compliance</li>
+            <li>Regular security audits</li>
+          </ul>
+          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Security Details</Button>
+        </CardContent>
+      </Card>
     </div>
-    <Card className="mt-6">
-      <CardHeader>
-        <CardTitle>Data Requirements Integration</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="mb-2">Seamlessly integrate your data requirements:</p>
-        <ul className="list-disc list-inside mt-2 space-y-1">
-          <li>Automated data mapping</li>
-          <li>Data quality checks</li>
-          <li>Schema validation</li>
-          <li>Data transformation pipelines</li>
-          <li>Real-time data synchronization</li>
-        </ul>
-        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Configure Data Integration</Button>
-      </CardContent>
-    </Card>
   </div>
 );
 
