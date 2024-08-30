@@ -4,8 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { BarChart3, Lock, Key, FileText, Star, Search, LayoutDashboard } from "lucide-react";
+import { BarChart3, Lock, Key, FileText, Star, Search, LayoutDashboard, Users, Shield } from "lucide-react";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
 const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLogo, rating, reviews, quote }) => (
   <Card className="mb-4 transition-all duration-300 hover:shadow-lg hover:scale-105 hover:bg-orange-50">
@@ -208,40 +209,88 @@ const ConnectiveMarketplace = () => {
   );
 };
 
-const EnterpriseSettings = () => (
-  <div>
-    <h2 className="text-2xl font-bold mb-4">Enterprise Settings</h2>
-    <Card className="mb-4">
-      <CardHeader>
-        <CardTitle>Permissions and RBAC</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p>Configure role-based access control and user permissions here.</p>
-        <Button className="mt-2 bg-orange-500 hover:bg-orange-600">Manage Roles</Button>
-      </CardContent>
-    </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Security Settings</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p>Set up security protocols and data access policies.</p>
-        <Button className="mt-2 bg-orange-500 hover:bg-orange-600">Configure Security</Button>
-      </CardContent>
-    </Card>
-  </div>
-);
+const EnterpriseSettings = () => {
+  const roles = [
+    { name: 'Admin', permissions: ['Full Access'] },
+    { name: 'Manager', permissions: ['View Reports', 'Approve Tools'] },
+    { name: 'Employee', permissions: ['Use Tools', 'Submit Requests'] },
+    { name: 'IT Staff', permissions: ['Manage Tools', 'Security Audits'] },
+  ];
+
+  const securitySettings = [
+    { name: 'Two-Factor Authentication', enabled: true },
+    { name: 'IP Whitelisting', enabled: false },
+    { name: 'Data Encryption', enabled: true },
+    { name: 'Regular Security Audits', enabled: true },
+  ];
+
+  return (
+    <div>
+      <h2 className="text-2xl font-bold mb-4">Hello CISO Leon Lee!</h2>
+      <h3 className="text-xl font-semibold mb-4">Enterprise Settings</h3>
+      <Card className="mb-4">
+        <CardHeader>
+          <CardTitle>Permissions and RBAC</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th>Role</th>
+                <th>Permissions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {roles.map((role, index) => (
+                <tr key={index}>
+                  <td>{role.name}</td>
+                  <td>{role.permissions.join(', ')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Manage Roles</Button>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Security Settings</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-2">
+            {securitySettings.map((setting, index) => (
+              <li key={index} className="flex justify-between items-center">
+                <span>{setting.name}</span>
+                <span className={setting.enabled ? 'text-green-500' : 'text-red-500'}>
+                  {setting.enabled ? 'Enabled' : 'Disabled'}
+                </span>
+              </li>
+            ))}
+          </ul>
+          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Configure Security</Button>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
 
 const APIDocumentation = () => (
   <div>
-    <h2 className="text-2xl font-bold mb-4">API Documentation</h2>
+    <h2 className="text-2xl font-bold mb-4">Hello CTO Leon Lee!</h2>
+    <h3 className="text-xl font-semibold mb-4">API Documentation</h3>
     <Card>
       <CardHeader>
         <CardTitle>Standardized API Access</CardTitle>
       </CardHeader>
       <CardContent>
         <p>Access our comprehensive API documentation for seamless integration.</p>
-        <Button className="mt-2 bg-orange-500 hover:bg-orange-600">View API Docs</Button>
+        <ul className="list-disc list-inside mt-2 space-y-1">
+          <li>Authentication endpoints</li>
+          <li>Data retrieval methods</li>
+          <li>Webhook integrations</li>
+          <li>Rate limiting information</li>
+        </ul>
+        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">View API Docs</Button>
       </CardContent>
     </Card>
   </div>
@@ -258,16 +307,16 @@ const Dashboard = () => {
   ];
 
   const toolUsage = [
-    { name: 'Tableau', users: 50 },
-    { name: 'Intercom', users: 30 },
-    { name: 'IBM Maximo', users: 20 },
-    { name: 'Claude 3', users: 40 },
-    { name: 'Cursor', users: 25 },
-    { name: 'Rossum', users: 15 },
-    { name: 'Scale AI', users: 10 },
-    { name: 'ChatGPT', users: 60 },
-    { name: 'Jasper', users: 35 },
-    { name: 'Dataiku', users: 18 },
+    { name: 'Tableau', users: 50, timeSpent: 120, businessValue: 15000, effective: true },
+    { name: 'Intercom', users: 30, timeSpent: 90, businessValue: 10000, effective: true },
+    { name: 'IBM Maximo', users: 20, timeSpent: 60, businessValue: 8000, effective: true },
+    { name: 'Claude 3', users: 40, timeSpent: 100, businessValue: 12000, effective: true },
+    { name: 'Cursor', users: 25, timeSpent: 75, businessValue: 9000, effective: true },
+    { name: 'Rossum', users: 15, timeSpent: 45, businessValue: 6000, effective: false },
+    { name: 'Scale AI', users: 10, timeSpent: 30, businessValue: 4000, effective: false },
+    { name: 'ChatGPT', users: 60, timeSpent: 150, businessValue: 18000, effective: true },
+    { name: 'Jasper', users: 35, timeSpent: 85, businessValue: 11000, effective: true },
+    { name: 'Dataiku', users: 18, timeSpent: 55, businessValue: 7000, effective: true },
   ];
 
   const dataSources = [
@@ -291,46 +340,83 @@ const Dashboard = () => {
             <LineChart data={costData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
+              <YAxis tickFormatter={(value) => `$${value}`} />
+              <Tooltip formatter={(value) => `$${value}`} />
               <Legend />
               <Line type="monotone" dataKey="cost" stroke="#f97316" activeDot={{ r: 8 }} />
             </LineChart>
           </ResponsiveContainer>
         </CardContent>
       </Card>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>Tool Usage by Employees</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {toolUsage.map((tool, index) => (
-                <li key={index} className="flex justify-between items-center">
-                  <span>{tool.name}</span>
-                  <span className="font-semibold">{tool.users} users</span>
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader>
-            <CardTitle>Connected Data Sources</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ul className="space-y-2">
-              {dataSources.map((source, index) => (
-                <li key={index} className="flex items-center">
-                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
-                  {source}
-                </li>
-              ))}
-            </ul>
-          </CardContent>
-        </Card>
-      </div>
+      <Tabs defaultValue="usage">
+        <TabsList>
+          <TabsTrigger value="usage">Usage</TabsTrigger>
+          <TabsTrigger value="analytics">Analytics</TabsTrigger>
+        </TabsList>
+        <TabsContent value="usage">
+          <Card>
+            <CardHeader>
+              <CardTitle>Tool Usage by Employees</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="space-y-2">
+                {toolUsage.map((tool, index) => (
+                  <li key={index} className="flex justify-between items-center">
+                    <span>{tool.name}</span>
+                    <span className="font-semibold">{tool.users} users</span>
+                  </li>
+                ))}
+              </ul>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="analytics">
+          <Card>
+            <CardHeader>
+              <CardTitle>Tool Analytics</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <table className="w-full">
+                <thead>
+                  <tr>
+                    <th>Tool</th>
+                    <th>Users</th>
+                    <th>Time Spent (hrs/month)</th>
+                    <th>Business Value ($)</th>
+                    <th>Effective</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {toolUsage.map((tool, index) => (
+                    <tr key={index}>
+                      <td>{tool.name}</td>
+                      <td>{tool.users}</td>
+                      <td>{tool.timeSpent}</td>
+                      <td>${tool.businessValue}</td>
+                      <td>{tool.effective ? '✅' : '❌'}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+      <Card className="mt-6">
+        <CardHeader>
+          <CardTitle>Connected Data Sources</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <ul className="space-y-2">
+            {dataSources.map((source, index) => (
+              <li key={index} className="flex items-center">
+                <div className="w-2 h-2 bg-green-500 rounded-full mr-2"></div>
+                {source}
+              </li>
+            ))}
+          </ul>
+        </CardContent>
+      </Card>
     </div>
   );
 };
