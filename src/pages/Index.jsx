@@ -4,7 +4,9 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { BarChart3, Lock, Key, FileText, Star, Search, LayoutDashboard, Users, Shield } from "lucide-react";
+import { BarChart3, Lock, Key, FileText, Star, Search, LayoutDashboard, Users, Shield, MessageSquare } from "lucide-react";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Badge } from "@/components/ui/badge";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 
@@ -211,63 +213,123 @@ const ConnectiveMarketplace = () => {
 
 const EnterpriseSettings = () => {
   const roles = [
-    { name: 'Admin', permissions: ['Full Access'] },
-    { name: 'Manager', permissions: ['View Reports', 'Approve Tools'] },
-    { name: 'Employee', permissions: ['Use Tools', 'Submit Requests'] },
-    { name: 'IT Staff', permissions: ['Manage Tools', 'Security Audits'] },
+    { name: 'C-Suite', permissions: ['Full Access', 'Strategic Decision Making'] },
+    { name: 'Department Head', permissions: ['Department-wide Access', 'Approve Department Tools'] },
+    { name: 'Manager', permissions: ['Team Access', 'Approve Team Tools', 'View Reports'] },
+    { name: 'Employee', permissions: ['Use Approved Tools', 'Submit Requests'] },
+    { name: 'IT Admin', permissions: ['Manage All Tools', 'Security Configuration', 'User Management'] },
+    { name: 'HR', permissions: ['Employee Data Access', 'Onboarding/Offboarding'] },
+    { name: 'Finance', permissions: ['Financial Data Access', 'Budget Approval'] },
+    { name: 'Legal', permissions: ['Compliance Monitoring', 'Contract Review'] },
+    { name: 'External Consultant', permissions: ['Limited Access', 'Project-specific Tools'] },
   ];
 
+  const departments = ['Executive', 'IT', 'HR', 'Finance', 'Legal', 'Marketing', 'Sales', 'Product', 'Engineering', 'Customer Support'];
+
   const securitySettings = [
-    { name: 'Two-Factor Authentication', enabled: true },
-    { name: 'IP Whitelisting', enabled: false },
-    { name: 'Data Encryption', enabled: true },
-    { name: 'Regular Security Audits', enabled: true },
+    { name: 'Multi-Factor Authentication', enabled: true, description: 'Requires 2FA for all user logins' },
+    { name: 'Single Sign-On (SSO)', enabled: true, description: 'Integrated with company-wide SSO solution' },
+    { name: 'IP Whitelisting', enabled: true, description: 'Restricts access to approved IP ranges' },
+    { name: 'Data Encryption at Rest', enabled: true, description: 'All stored data is encrypted' },
+    { name: 'Data Encryption in Transit', enabled: true, description: 'All data transfers use TLS 1.3' },
+    { name: 'Regular Security Audits', enabled: true, description: 'Quarterly third-party security assessments' },
+    { name: 'User Activity Logging', enabled: true, description: 'Detailed logs of all user actions' },
+    { name: 'Data Loss Prevention (DLP)', enabled: true, description: 'Prevents unauthorized data exfiltration' },
+    { name: 'GDPR Compliance', enabled: true, description: 'Adheres to EU data protection regulations' },
+    { name: 'CCPA Compliance', enabled: true, description: 'Complies with California Consumer Privacy Act' },
+    { name: 'SOC 2 Compliance', enabled: true, description: 'Annual SOC 2 Type II audit' },
+    { name: 'Vendor Risk Assessment', enabled: true, description: 'Regular security reviews of all integrated tools' },
   ];
 
   return (
     <div>
       <h2 className="text-2xl font-bold mb-4">Hello CISO Leon Lee!</h2>
       <h3 className="text-xl font-semibold mb-4">Enterprise Settings</h3>
-      <Card className="mb-4">
+      <Tabs defaultValue="rbac">
+        <TabsList>
+          <TabsTrigger value="rbac">RBAC</TabsTrigger>
+          <TabsTrigger value="security">Security Settings</TabsTrigger>
+        </TabsList>
+        <TabsContent value="rbac">
+          <Card>
+            <CardHeader>
+              <CardTitle>Role-Based Access Control (RBAC)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Role</TableHead>
+                    <TableHead>Permissions</TableHead>
+                    <TableHead>Departments</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {roles.map((role, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{role.name}</TableCell>
+                      <TableCell>
+                        <ul className="list-disc list-inside">
+                          {role.permissions.map((perm, i) => (
+                            <li key={i}>{perm}</li>
+                          ))}
+                        </ul>
+                      </TableCell>
+                      <TableCell>
+                        {role.name === 'C-Suite' || role.name === 'IT Admin'
+                          ? 'All Departments'
+                          : departments.filter(() => Math.random() > 0.5).join(', ')}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Manage Roles</Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+        <TabsContent value="security">
+          <Card>
+            <CardHeader>
+              <CardTitle>Security and Compliance Settings</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Setting</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Description</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {securitySettings.map((setting, index) => (
+                    <TableRow key={index}>
+                      <TableCell>{setting.name}</TableCell>
+                      <TableCell>
+                        <Badge variant={setting.enabled ? "success" : "destructive"}>
+                          {setting.enabled ? 'Enabled' : 'Disabled'}
+                        </Badge>
+                      </TableCell>
+                      <TableCell>{setting.description}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+              <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Configure Security</Button>
+            </CardContent>
+          </Card>
+        </TabsContent>
+      </Tabs>
+      <Card className="mt-4">
         <CardHeader>
-          <CardTitle>Permissions and RBAC</CardTitle>
+          <CardTitle>Connective Support</CardTitle>
         </CardHeader>
         <CardContent>
-          <table className="w-full">
-            <thead>
-              <tr>
-                <th>Role</th>
-                <th>Permissions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {roles.map((role, index) => (
-                <tr key={index}>
-                  <td>{role.name}</td>
-                  <td>{role.permissions.join(', ')}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Manage Roles</Button>
-        </CardContent>
-      </Card>
-      <Card>
-        <CardHeader>
-          <CardTitle>Security Settings</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <ul className="space-y-2">
-            {securitySettings.map((setting, index) => (
-              <li key={index} className="flex justify-between items-center">
-                <span>{setting.name}</span>
-                <span className={setting.enabled ? 'text-green-500' : 'text-red-500'}>
-                  {setting.enabled ? 'Enabled' : 'Disabled'}
-                </span>
-              </li>
-            ))}
-          </ul>
-          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Configure Security</Button>
+          <p className="mb-2">Need immediate assistance? Our AI-powered support is here to help!</p>
+          <Button className="bg-orange-500 hover:bg-orange-600">
+            <MessageSquare className="mr-2 h-4 w-4" /> Chat with Support
+          </Button>
         </CardContent>
       </Card>
     </div>
