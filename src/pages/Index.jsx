@@ -334,84 +334,100 @@ const EnterpriseSettings = () => {
   );
 };
 
-const Integration = () => (
+const ConnectiveStudio = () => (
   <div>
     <h2 className="text-2xl font-bold mb-4">Hello CTO Leon Lee!</h2>
-    <h3 className="text-xl font-semibold mb-4">Integration</h3>
+    <h3 className="text-xl font-semibold mb-4">CONNECTIVE Studio</h3>
     <Card className="mb-6">
       <CardHeader>
-        <CardTitle>One-Time Installation</CardTitle>
+        <CardTitle>One-Time Single-Point Installation</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="mb-4">Our integration process is designed for a smooth, one-time installation. Once set up, you'll have access to all our features and can easily manage them through your dashboard.</p>
+        <p className="mb-4">Our streamlined process ensures a smooth, one-time installation. Once set up, you'll have access to all CONNECTIVE features through a single integration point.</p>
         <Button className="bg-orange-500 hover:bg-orange-600">Start Installation</Button>
       </CardContent>
     </Card>
-    <Card className="mb-6">
+    <div className="grid grid-cols-2 gap-6">
+      <Card>
+        <CardHeader>
+          <CardTitle>Standardized API Access</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="mb-2">Our RESTful API provides:</p>
+          <ul className="list-disc list-inside mt-2 space-y-1">
+            <li>OAuth 2.0 authentication</li>
+            <li>CRUD operations</li>
+            <li>Webhook support</li>
+            <li>Rate limiting</li>
+            <li>Detailed error handling</li>
+          </ul>
+          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">View API Docs</Button>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>SDKs for Major Languages</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="mb-2">Official SDKs available for:</p>
+          <ul className="list-disc list-inside mt-2 space-y-1">
+            <li>Python</li>
+            <li>JavaScript/TypeScript</li>
+            <li>Java</li>
+            <li>C#</li>
+            <li>Ruby</li>
+            <li>Go</li>
+          </ul>
+          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Download SDKs</Button>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Open-Source Connectors</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="mb-2">Pre-built connectors for:</p>
+          <ul className="list-disc list-inside mt-2 space-y-1">
+            <li>Salesforce</li>
+            <li>SAP</li>
+            <li>Oracle</li>
+            <li>Microsoft Dynamics</li>
+            <li>Shopify</li>
+            <li>Zendesk</li>
+          </ul>
+          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Explore Connectors</Button>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Cloud Deployment Support</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p className="mb-2">Deployment support for:</p>
+          <ul className="list-disc list-inside mt-2 space-y-1">
+            <li>AWS</li>
+            <li>Microsoft Azure</li>
+            <li>Google Cloud Platform</li>
+            <li>IBM Cloud</li>
+          </ul>
+          <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Request Support</Button>
+        </CardContent>
+      </Card>
+    </div>
+    <Card className="mt-6">
       <CardHeader>
-        <CardTitle>Standardized API Access</CardTitle>
+        <CardTitle>Data Requirements Integration</CardTitle>
       </CardHeader>
       <CardContent>
-        <p className="mb-2">Our RESTful API provides comprehensive access to all Connective features:</p>
+        <p className="mb-2">Seamlessly integrate your data requirements:</p>
         <ul className="list-disc list-inside mt-2 space-y-1">
-          <li>OAuth 2.0 authentication</li>
-          <li>CRUD operations for all resources</li>
-          <li>Webhook support for real-time updates</li>
-          <li>Rate limiting with generous allowances</li>
-          <li>Detailed error messages and status codes</li>
+          <li>Automated data mapping</li>
+          <li>Data quality checks</li>
+          <li>Schema validation</li>
+          <li>Data transformation pipelines</li>
+          <li>Real-time data synchronization</li>
         </ul>
-        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">View API Docs</Button>
-      </CardContent>
-    </Card>
-    <Card className="mb-6">
-      <CardHeader>
-        <CardTitle>SDKs for Major Languages</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="mb-2">We offer official SDKs for rapid integration:</p>
-        <ul className="list-disc list-inside mt-2 space-y-1">
-          <li>Python</li>
-          <li>JavaScript/TypeScript</li>
-          <li>Java</li>
-          <li>C#</li>
-          <li>Ruby</li>
-          <li>Go</li>
-        </ul>
-        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Download SDKs</Button>
-      </CardContent>
-    </Card>
-    <Card className="mb-6">
-      <CardHeader>
-        <CardTitle>Open-Source and Common Connectors</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="mb-2">Leverage our pre-built connectors for popular platforms:</p>
-        <ul className="list-disc list-inside mt-2 space-y-1">
-          <li>Salesforce</li>
-          <li>SAP</li>
-          <li>Oracle</li>
-          <li>Microsoft Dynamics</li>
-          <li>Shopify</li>
-          <li>Zendesk</li>
-        </ul>
-        <p className="mt-2">Our open-source connector framework allows for easy customization and development of new connectors.</p>
-        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Explore Connectors</Button>
-      </CardContent>
-    </Card>
-    <Card>
-      <CardHeader>
-        <CardTitle>Cloud Deployment Support</CardTitle>
-      </CardHeader>
-      <CardContent>
-        <p className="mb-2">We offer deployment support for major cloud platforms:</p>
-        <ul className="list-disc list-inside mt-2 space-y-1">
-          <li>AWS (Amazon Web Services)</li>
-          <li>Microsoft Azure</li>
-          <li>Google Cloud Platform</li>
-          <li>IBM Cloud</li>
-        </ul>
-        <p className="mt-2">Our team can assist with cloud-specific optimizations, security configurations, and scalability planning.</p>
-        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Request Deployment Support</Button>
+        <Button className="mt-4 bg-orange-500 hover:bg-orange-600">Configure Data Integration</Button>
       </CardContent>
     </Card>
   </div>
@@ -554,7 +570,7 @@ const Index = () => {
             <TabsTrigger value="dashboard"><LayoutDashboard className="mr-2" />Dashboard</TabsTrigger>
             <TabsTrigger value="marketplace"><BarChart3 className="mr-2" />CONNECTIVE Marketplace</TabsTrigger>
             <TabsTrigger value="settings"><Lock className="mr-2" />Enterprise Settings</TabsTrigger>
-            <TabsTrigger value="integration"><FileText className="mr-2" />Integration</TabsTrigger>
+            <TabsTrigger value="studio"><FileText className="mr-2" />CONNECTIVE Studio</TabsTrigger>
           </TabsList>
           <TabsContent value="dashboard">
             <Dashboard />
@@ -565,8 +581,8 @@ const Index = () => {
           <TabsContent value="settings">
             <EnterpriseSettings />
           </TabsContent>
-          <TabsContent value="integration">
-            <Integration />
+          <TabsContent value="studio">
+            <ConnectiveStudio />
           </TabsContent>
         </Tabs>
       </main>
