@@ -10,6 +10,7 @@ import { Badge } from "@/components/ui/badge";
 import { LineChart, Line, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Progress } from "@/components/ui/progress";
+import EmployeeDashboard from '../components/EmployeeDashboard';
 
 const AIToolCard = ({ name, description, cost, workflow, previewImage, vendorLogo, rating, reviews, quote }) => {
   const [showProgress, setShowProgress] = useState(false);
@@ -271,7 +272,7 @@ const ConnectiveMarketplace = () => {
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Hello Jane from Product Design Department</h2>
+      <h2 className="text-2xl font-bold mb-4">Hello Product Designer Leon Lee!</h2>
       <h3 className="text-xl font-semibold mb-4">CONNECTIVE Marketplace</h3>
       <div className="flex flex-col md:flex-row mb-4 gap-4">
         <div className="relative flex-grow">
@@ -665,6 +666,7 @@ const Index = () => {
             <TabsTrigger value="marketplace"><BarChart3 className="mr-2" />CONNECTIVE Marketplace</TabsTrigger>
             <TabsTrigger value="settings"><Lock className="mr-2" />Enterprise Settings</TabsTrigger>
             <TabsTrigger value="studio"><FileText className="mr-2" />CONNECTIVE Studio</TabsTrigger>
+            <TabsTrigger value="employee"><Users className="mr-2" />Employee Dashboard</TabsTrigger>
           </TabsList>
           <TabsContent value="dashboard">
             <Dashboard />
@@ -677,6 +679,9 @@ const Index = () => {
           </TabsContent>
           <TabsContent value="studio">
             <ConnectiveStudio />
+          </TabsContent>
+          <TabsContent value="employee">
+            <EmployeeDashboard />
           </TabsContent>
         </Tabs>
       </main>
