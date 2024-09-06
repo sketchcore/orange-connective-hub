@@ -72,41 +72,6 @@ const ConnectiveMarketplace = () => {
       category: "OCR",
       githubUrl: "https://github.com/tesseract-ocr/tesseract",
       websiteUrl: "https://tesseract-ocr.github.io/"
-    },
-    {
-      name: "AutoHotkey",
-      description: "The ultimate automation scripting language for Windows.",
-      category: "Automation",
-      githubUrl: "https://github.com/AutoHotkey/AutoHotkey",
-      websiteUrl: "https://www.autohotkey.com/"
-    },
-    {
-      name: "Calibre",
-      description: "E-book management software.",
-      category: "E-books",
-      githubUrl: "https://github.com/kovidgoyal/calibre",
-      websiteUrl: "https://calibre-ebook.com/"
-    },
-    {
-      name: "Audacity",
-      description: "Audio software for multi-track recording and editing.",
-      category: "Audio Editing",
-      githubUrl: "https://github.com/audacity/audacity",
-      websiteUrl: "https://www.audacityteam.org/"
-    },
-    {
-      name: "KeePassXC",
-      description: "Cross-platform password manager.",
-      category: "Security",
-      githubUrl: "https://github.com/keepassxreboot/keepassxc",
-      websiteUrl: "https://keepassxc.org/"
-    },
-    {
-      name: "Syncthing",
-      description: "Open Source Continuous File Synchronization.",
-      category: "File Sync",
-      githubUrl: "https://github.com/syncthing/syncthing",
-      websiteUrl: "https://syncthing.net/"
     }
   ];
 
@@ -153,7 +118,56 @@ const ConnectiveMarketplace = () => {
   );
 };
 
-// ... (rest of the code remains unchanged)
+const Dashboard = () => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <Card>
+        <CardHeader>
+          <CardTitle>Welcome to CONNECTIVE Hub</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>This is your central dashboard for managing AI tools and resources.</p>
+        </CardContent>
+      </Card>
+      <Card>
+        <CardHeader>
+          <CardTitle>Quick Stats</CardTitle>
+        </CardHeader>
+        <CardContent>
+          <p>Total Tools: 5</p>
+          <p>Active Projects: 3</p>
+          <p>Team Members: 10</p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+};
+
+const EnterpriseSettings = () => {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>Enterprise Settings</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>Configure your enterprise settings here.</p>
+      </CardContent>
+    </Card>
+  );
+};
+
+const ConnectiveStudio = () => {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle>CONNECTIVE Studio</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p>Welcome to CONNECTIVE Studio. Start creating your AI-powered solutions here.</p>
+      </CardContent>
+    </Card>
+  );
+};
 
 const Index = () => {
   return (
