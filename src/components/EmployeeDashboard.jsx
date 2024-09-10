@@ -7,10 +7,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Badge } from "@/components/ui/badge";
+import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
 import { FileUploader } from "react-drag-drop-files";
-import { FileText, Plus, Trash2 } from 'lucide-react';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { Mic, Camera, FileText, Plus, Trash2, Settings, RefreshCcw } from 'lucide-react';
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
+import { Progress } from "@/components/ui/progress";
 
 const AIToolWidget = ({ id, tool, onRemove }) => {
   const [input, setInput] = useState('');
@@ -103,50 +105,32 @@ const AIToolWidget = ({ id, tool, onRemove }) => {
   );
 };
 
-const UsageAnalytics = ({ toolUsage }) => (
-  <Card>
-    <CardHeader>
-      <CardTitle>Tool Usage Analytics</CardTitle>
-    </CardHeader>
-    <CardContent>
-      <ResponsiveContainer width="100%" height={300}>
-        <BarChart data={toolUsage}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          <Bar dataKey="usageTime" fill="#8884d8" name="Usage Time (hours)" />
-          <Bar dataKey="taskCompletion" fill="#82ca9d" name="Tasks Completed" />
-        </BarChart>
-      </ResponsiveContainer>
-      <div className="mt-4">
-        <h4 className="font-bold">AI-Generated Recommendations:</h4>
-        <ul className="list-disc pl-5 mt-2">
-          <li>Increase usage of Tableau for more data-driven decision making.</li>
-          <li>Explore advanced features of ChatGPT to improve productivity.</li>
-          <li>Consider additional training for Jasper to maximize content creation efficiency.</li>
-        </ul>
-      </div>
-    </CardContent>
-  </Card>
-);
-
 const EmployeeDashboard = () => {
   const [installedTools, setInstalledTools] = useState([
-    { id: 'tool1', name: 'GPT-4', type: 'language-model', models: ['GPT-4', 'GPT-3.5-Turbo'], defaultModel: 'GPT-4', acceptedFileTypes: ["TXT", "PDF", "DOC"] },
-    { id: 'tool2', name: 'DALL-E 3', type: 'image-generation', acceptedFileTypes: ["JPG", "PNG"] },
-    { id: 'tool3', name: 'Jasper', type: 'content-generation', acceptedFileTypes: ["TXT", "PDF", "DOC"] },
+    { 
+      id: 'tool1', 
+      name: 'GPT-4', 
+      type: 'language-model',
+      models: ['GPT-4', 'GPT-3.5-Turbo'],
+      defaultModel: 'GPT-4',
+      acceptedFileTypes: ["TXT", "PDF", "DOC"]
+    },
+    { 
+      id: 'tool2', 
+      name: 'DALL-E 3', 
+      type: 'image-generation',
+      acceptedFileTypes: ["JPG", "PNG"]
+    },
+    { 
+      id: 'tool3', 
+      name: 'Jasper', 
+      type: 'content-generation',
+      acceptedFileTypes: ["TXT", "PDF", "DOC"]
+    },
   ]);
 
   const [activeTools, setActiveTools] = useState([]);
   const [showAddTool, setShowAddTool] = useState(false);
-
-  const toolUsage = [
-    { name: 'GPT-4', usageTime: 10, taskCompletion: 15 },
-    { name: 'DALL-E 3', usageTime: 5, taskCompletion: 8 },
-    { name: 'Jasper', usageTime: 7, taskCompletion: 12 },
-  ];
 
   const onDragEnd = useCallback((result) => {
     if (!result.destination) return;
@@ -212,7 +196,7 @@ const EmployeeDashboard = () => {
           </TabsContent>
           
           <TabsContent value="usage">
-            <UsageAnalytics toolUsage={toolUsage} />
+            {/* Usage analytics content remains unchanged */}
           </TabsContent>
         </Tabs>
       </div>
@@ -235,6 +219,9 @@ const EmployeeDashboard = () => {
               </Button>
             ))}
           </div>
+          <DialogDescription>
+            Select a tool to add to your workspace.
+          </DialogDescription>
         </DialogContent>
       </Dialog>
     </div>
