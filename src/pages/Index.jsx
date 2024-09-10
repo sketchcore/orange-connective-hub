@@ -2,7 +2,7 @@ import React from 'react';
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { LayoutDashboard, BarChart3, Lock, FileText, Users } from 'lucide-react';
 import ConnectiveMarketplace from '../components/ConnectiveMarketplace';
@@ -36,41 +36,46 @@ const ConnectiveStudio = () => (
 );
 
 const Index = () => {
-  const navigate = useNavigate();
-
-  const handleTabChange = (value) => {
-    navigate(`/${value}`);
-  };
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
-        <div className="min-h-screen bg-orange-50">
-          <header className="bg-orange-500 text-white p-4">
-            <h1 className="text-2xl font-bold">CONNECTIVE Hub</h1>
-          </header>
-          <main className="container mx-auto mt-8 p-4">
-            <Tabs defaultValue="dashboard" onValueChange={handleTabChange}>
-              <TabsList className="mb-4">
-                <TabsTrigger value="dashboard"><LayoutDashboard className="mr-2" />Dashboard</TabsTrigger>
-                <TabsTrigger value="marketplace"><BarChart3 className="mr-2" />CONNECTIVE Marketplace</TabsTrigger>
-                <TabsTrigger value="settings"><Lock className="mr-2" />Enterprise Settings</TabsTrigger>
-                <TabsTrigger value="studio"><FileText className="mr-2" />CONNECTIVE Studio</TabsTrigger>
-                <TabsTrigger value="employee"><Users className="mr-2" />Employee Dashboard</TabsTrigger>
-              </TabsList>
-              <Routes>
-                <Route path="/" element={<TabsContent value="dashboard"><Dashboard /></TabsContent>} />
-                <Route path="/dashboard" element={<TabsContent value="dashboard"><Dashboard /></TabsContent>} />
-                <Route path="/marketplace" element={<TabsContent value="marketplace"><ConnectiveMarketplace /></TabsContent>} />
-                <Route path="/settings" element={<TabsContent value="settings"><EnterpriseSettings /></TabsContent>} />
-                <Route path="/studio" element={<TabsContent value="studio"><ConnectiveStudio /></TabsContent>} />
-                <Route path="/employee" element={<TabsContent value="employee"><EmployeeDashboard /></TabsContent>} />
-                <Route path="/analytics" element={<Analytics />} />
-              </Routes>
-            </Tabs>
-          </main>
-        </div>
+        <BrowserRouter>
+          <div className="min-h-screen bg-orange-50">
+            <header className="bg-orange-500 text-white p-4">
+              <h1 className="text-2xl font-bold">CONNECTIVE Hub</h1>
+            </header>
+            <main className="container mx-auto mt-8 p-4">
+              <Tabs defaultValue="dashboard">
+                <TabsList className="mb-4">
+                  <TabsTrigger value="dashboard"><LayoutDashboard className="mr-2" />Dashboard</TabsTrigger>
+                  <TabsTrigger value="marketplace"><BarChart3 className="mr-2" />CONNECTIVE Marketplace</TabsTrigger>
+                  <TabsTrigger value="settings"><Lock className="mr-2" />Enterprise Settings</TabsTrigger>
+                  <TabsTrigger value="studio"><FileText className="mr-2" />CONNECTIVE Studio</TabsTrigger>
+                  <TabsTrigger value="employee"><Users className="mr-2" />Employee Dashboard</TabsTrigger>
+                </TabsList>
+                <TabsContent value="dashboard">
+                  <Dashboard />
+                </TabsContent>
+                <TabsContent value="marketplace">
+                  <ConnectiveMarketplace />
+                </TabsContent>
+                <TabsContent value="settings">
+                  <EnterpriseSettings />
+                </TabsContent>
+                <TabsContent value="studio">
+                  <ConnectiveStudio />
+                </TabsContent>
+                <TabsContent value="employee">
+                  <EmployeeDashboard />
+                </TabsContent>
+              </Tabs>
+            </main>
+          </div>
+          <Routes>
+            <Route path="/analytics" element={<Analytics />} />
+          </Routes>
+        </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
   );
